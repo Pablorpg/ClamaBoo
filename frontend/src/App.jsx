@@ -1,12 +1,15 @@
-import React from 'react';
-import Login from './components/Login-Cadastro';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginRegister from "./components/Login-Cadastro";
+import HomePage from "./pages/HomePage/index.jsx";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Login />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginRegister />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

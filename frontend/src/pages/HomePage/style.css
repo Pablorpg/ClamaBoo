@@ -1,0 +1,120 @@
+/* === HomePage === */
+.home-body {
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: #FFF2E0;
+  color: #000;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logoClamaBoo{
+  position: absolute;
+  height: 100px;
+}
+
+.navbar nav ul {
+  display: flex;
+  gap: 20px;
+}
+.navbar nav ul li {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.navbar nav ul li.active {
+  background: #FFE0A3;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.home-hero {
+  text-align: center;
+  padding-bottom: 100px;
+}
+.home-hero h2 {
+  margin-bottom: 40px;
+  font-size: 22px;
+}
+.home-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.card {
+  width: 150px;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.card.orange { background: #FFB966; }
+.card.blue { background: #A3C4FF; color: #000; }
+.card.pink { background: #FF9AA2; }
+
+/* FAQ Section */
+.home-faq {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+.faq-text h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+.faq-text p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.btn-search {
+  background: #FFB966;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.faq-image img {
+  width: 250px;
+  border-radius: 50%;
+}
+
+/* Recado Section */
+.home-recado {
+  display: flex;
+  align-items: center;
+  padding: 50px 20px;
+  gap: 20px;
+  background: #FFF2E0;
+  flex-wrap: wrap;
+}
+.home-recado img {
+  width: 200px;
+  border-radius: 20px;
+}
+.recado-text h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+.recado-text p {
+  font-size: 16px;
+}
