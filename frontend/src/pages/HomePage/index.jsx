@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import dogImg from "../../assets/dog.png";       // substitua pelos seus assets
+import dogImg from "../../assets/dog.png";
 import catImg from "../../assets/cat.png";
 import rabbitImg from "../../assets/rabbit.png";
 import pomeranianImg from "../../assets/pomeranian.png";
@@ -47,7 +47,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Dúvidas Frequentes */}
+      {/* Dúvidas Frequentes */} //tenho que alterar
       <section className="home-faq">
         <div className="faq-text">
           <h2>Dúvidas Frequentes</h2>

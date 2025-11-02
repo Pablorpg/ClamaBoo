@@ -1,4 +1,4 @@
-/* === HomePage === */
+
 .home-body {
   width: 100vw;
   min-height: 100vh;
@@ -7,7 +7,6 @@
   color: #000;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -38,7 +37,6 @@
   font-weight: 600;
 }
 
-/* Hero Section */
 .home-hero {
   text-align: center;
   padding-bottom: 100px;
@@ -70,7 +68,6 @@
 .card.blue { background: #A3C4FF; color: #000; }
 .card.pink { background: #FF9AA2; }
 
-/* FAQ Section */
 .home-faq {
   display: flex;
   align-items: center;
@@ -98,7 +95,6 @@
   border-radius: 50%;
 }
 
-/* Recado Section */
 .home-recado {
   display: flex;
   align-items: center;
