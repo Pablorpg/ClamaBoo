@@ -6,40 +6,60 @@ export async function register(data) {
     email: data.email?.trim(),
     password: data.password
   };
-  console.log("Payload de registro:", payload);
 
   const res = await fetch(`${API}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
+
   return res.json();
 }
 
-export async function login(data) {
-  const payload = {
-    email: data.email?.trim(),
-    password: data.password
-  };
-  console.log("Payload de login:", payload);
-
+export async function login(body) {
   const res = await fetch(`${API}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    credentials: "include",
+    body: JSON.stringify(body),
   });
+
+  return res.json();
+}
+
+export async function registerCompany(body) {
+  const res = await fetch(`${API}/api/company/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.message);
+
+  return data;
+}
+
+export async function loginCompany(body) {
+  const res = await fetch(`${API}/api/company/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
   return res.json();
 }
 
 export async function forgot(email) {
   const payload = { email: email?.trim() };
-  console.log("Payload forgot:", payload);
 
   const res = await fetch(`${API}/api/auth/forgot-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
+
   return res.json();
 }
 
@@ -49,12 +69,12 @@ export async function reset({ email, code, newPassword }) {
     code: code?.trim(),
     newPassword
   };
-  console.log("Payload reset:", payload);
 
   const res = await fetch(`${API}/api/auth/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
+
   return res.json();
 }

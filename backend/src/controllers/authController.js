@@ -39,24 +39,37 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
+  const { email, password } = req.body;
 
-    if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
+  const user = await User.findOne({ where: { email } });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ message: "Senha incorreta" });
-
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN || "1d",
-    });
-
-    res.json({ message: "Login realizado com sucesso", token });
-  } catch (err) {
-    res.status(500).json({ message: "Erro ao fazer login: " + err.message });
+  if (!user) {
+    return res.status(400).json({ message: "Este e-mail não está cadastrado." });
   }
-};
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    return res.status(400).json({ message: "A senha está incorreta." });
+  }
+
+  const token = jwt.sign(
+    { id: user.id, type: "user" },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+
+  return res.json({
+    message: "Login realizado com sucesso!",
+    type: "user",
+    token,
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email
+    }
+  });
+}
 
 exports.forgotPassword = async (req, res) => {
   try {

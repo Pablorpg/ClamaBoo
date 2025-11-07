@@ -129,7 +129,7 @@ form {
 }
 
 .btn:hover {
-  background-color: #FB9E47;
+  background-color: #9d6b3d;
 }
 
 .toggle-box {
@@ -216,10 +216,23 @@ form {
   z-index: 2;
 }
 
+.login-btn:hover {
+  background-color: #9d6b3d;
+}
+
 .register-btn {
   margin-bottom: 400px;
   z-index: 2;
   position: relative;
+}
+
+.register-btn:hover {
+  background-color: #9d6b3d;
+}
+
+.toggle-register-type {
+  height: 50px;
+  margin-left: 5px;
 }
 
 .toggle-bg {
@@ -286,13 +299,88 @@ form {
 }
 
 .reset-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+}
+
+.reset-modal {
+  background: #fff;
+  width: 360px;
+  padding: 25px 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn .25s ease-out;
+}
+
+.reset-modal h2 {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.reset-modal input {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  outline: none;
+  transition: .2s;
+}
+
+.reset-modal input:focus {
+  border-color: #4d7cff;
+}
+
+.reset-modal .btn {
+  width: 100%;
+  padding: 9px;
+  margin-top: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #4d7cff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: .2s;
+}
+
+.reset-modal .btn:hover {
+  background: #345ee0;
+}
+
+.btn-close {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  margin-top: 6px;
+  background: #d9534f !important;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  background: #8f2d2a !important;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 10px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .reset-box {
@@ -338,7 +426,121 @@ form {
   background-image: url("../../assets/register.png");
 }
 
+#btnUser,
+#btnCompany {
+  height: 40px;
+  background-color: #FB9E47;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  transition: 0.2s;
+}
+
+#btnUser:hover,
+#btnCompany:hover {
+  background-color: #b19983;
+}
+
+.selected {
+  background-color: #9d6b3d !important;
+}
+
+#btnUser,
+#btnCompany {
+  height: 40px;
+  background-color: #FB9E47;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  transition: 0.2s;
+}
+
+#btnUser:hover,
+#btnCompany:hover {
+  background-color: #b19983;
+}
+
+/* Botão selecionado */
+.selected {
+  background-color: #9d6b3d !important;
+}
+
+#select {
+  width: 100%;
+  padding: 13px 50px 13px 20px;
+  background: #8d8e8f;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  margin: 0;
+}
+
+#select:hover {
+  background: #555859;
+}
+
+.reset-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.reset-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  animation: fadeIn 0.3s;
+}
+
+.reset-box input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #888;
+}
+
+.btn-cancel {
+  background: #b00020;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 @keyframes fadeInOut {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   0% {
     opacity: 0;
     transform: translateX(-50%) translateY(-10px);

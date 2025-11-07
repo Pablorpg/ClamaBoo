@@ -2,9 +2,28 @@ import React, { useState } from "react";
 import loginImg from "../../assets/login.png";
 import registerImg from "../../assets/register.png";
 import "./style.css";
-import { register, login, forgot, reset } from "../../services/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { register, login, forgot, reset, registerCompany, loginCompany } from "../../services/auth";
+
+export async function forgotCompany(email) {
+  const res = await fetch("http://localhost:5000/api/company/forgot-password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  });
+  return res.json();
+}
+
+export async function resetCompany(data) {
+  const res = await fetch("http://localhost:5000/api/company/reset-password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  return res.json();
+}
+
 
 export default function LoginRegister() {
   const [isActive, setIsActive] = useState(false);
@@ -24,7 +43,7 @@ export default function LoginRegister() {
     email: "",
     password: "",
     phone: "",
-    area: "",
+    categories: "",
     cnpj: "",
   });
 
@@ -35,96 +54,177 @@ export default function LoginRegister() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const res = await register(regForm);
+    const { username, email, password } = regForm;
 
-    if (res.token) {
-      localStorage.setItem("token", res.token);
-      toast.success("Registrado com sucesso!");
-      setTimeout(() => (window.location.href = "/home"), 1500);
-    } else {
-      toast.error(res.message || "Erro ao registrar usuário");
+    try {
+      const res = await register({ username, email, password });
+      toast.success(res.message);
+      setTimeout(() => (window.location.href = "/"), 1500);
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
   const handleRegisterCompany = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/company/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...companyForm,
-        categories: [companyForm.area],
-      }),
-    });
+    const { companyName, responsibleName, email, password, phone, categories, cnpj } = companyForm;
 
-    const data = await res.json();
+    if (
+      !companyName.trim() ||
+      !responsibleName.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !phone.trim() ||
+      !categories.trim()
+    ) {
+      return toast.error("Preencha todos os campos obrigatórios!");
+    }
 
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      toast.success("Empresa cadastrada com sucesso!");
-      setTimeout(() => (window.location.href = "/home"), 1500);
-    } else {
-      toast.error(data.message || "Erro ao registrar empresa");
+    const body = {
+      companyName: companyName.trim(),
+      responsibleName: responsibleName.trim(),
+      email: email.trim(),
+      password: password.trim(),
+      phone: phone.trim(),
+      categories: [categories.trim()],
+    };
+
+    if (cnpj && cnpj.trim()) body.cnpj = cnpj.trim();
+
+    try {
+      const res = await registerCompany(body);
+
+      if (res?.message && !res.message.toLowerCase().includes("sucesso")) {
+        return toast.error(res.message);
+      }
+
+      toast.success("Empresa cadastrada com sucesso! 🎉");
+
+      setCompanyForm({
+        companyName: "",
+        responsibleName: "",
+        email: "",
+        password: "",
+        phone: "",
+        categories: "",
+        cnpj: "",
+      });
+
+      setTimeout(() => setIsActive(false), 1500);
+
+    } catch (err) {
+      console.error(err);
+      toast.error("Erro ao cadastrar empresa. Tente novamente. Ou esse e-mail já está em uso.");
+    }
+  };
+
+
+  const handleLoginCompany = async (e) => {
+    e.preventDefault();
+    const { email, password } = loginForm;
+
+    if (!email?.trim() || !password?.trim()) {
+      return toast.error("Preencha email e senha!");
+    }
+
+    try {
+      const res = await loginCompany({ email: email.trim(), password: password.trim() });
+
+      if (res.token && res.type === "company") {
+        localStorage.setItem("companyToken", res.token);
+        toast.success("Empresa logada com sucesso!");
+        setTimeout(() => (window.location.href = "/empresa"), 1500);
+      } else {
+        toast.error(res.message || "Credenciais inválidas");
+      }
+
+    } catch (err) {
+      console.error("Erro no login da empresa:", err);
+      toast.error("Erro ao fazer login da empresa. Tente novamente.");
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await login(loginForm);
+    const { email, password } = loginForm;
 
-    if (res.token) {
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("userEmail", loginForm.email);
-      toast.success("Logado com sucesso!");
-      setTimeout(() => (window.location.href = "/home"), 1500);
-    } else {
-      toast.error(res.message || "Credenciais inválidas");
+    if (!email.trim() || !password.trim()) {
+      return toast.error("Preencha email e senha!");
+    }
+
+    try {
+      const res = await login({ email: email.trim(), password: password.trim() });
+      if (res.message?.toLowerCase().includes("sucesso")) {
+        toast.success(res.message);
+        setTimeout(() => (window.location.href = "/usuario/HomeUser"), 1500);
+      } else {
+        toast.error(res.message || "Credenciais inválidas");
+      }
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
-  const handleForgot = async (e) => {
-    e.preventDefault();
+  const handleForgot = async () => {
     if (!emailForReset.trim()) return toast.warn("Informe o e-mail");
 
-    const res = await forgot(emailForReset.trim());
-    if (res.message && !res.message.toLowerCase().includes("erro")) {
+    const res = isCompany
+      ? await forgotCompany(emailForReset.trim())
+      : await forgot(emailForReset.trim());
+
+    if (res.message?.toLowerCase().includes("enviado")) {
       toast.info("Código enviado ao e-mail.");
       setShowResetPanel(true);
     } else {
-      toast.error(res.message || "Erro ao enviar código");
+      toast.error(res.message);
     }
   };
 
-  const handleReset = async (e) => {
-    e.preventDefault();
-    if (!code.trim() || !newPass.trim())
-      return toast.warn("Preencha todos os campos");
+  const handleReset = async () => {
+    if (!code.trim() || !newPass.trim()) return toast.warn("Preencha todos os campos");
 
-    const res = await reset({
-      email: emailForReset.trim(),
-      code: code.trim(),
-      newPassword: newPass.trim(),
-    });
+    const res = isCompany
+      ? await resetCompany({ email: emailForReset.trim(), code, newPassword: newPass })
+      : await reset({ email: emailForReset.trim(), code, newPassword: newPass });
 
     if (res.message?.toLowerCase().includes("sucesso")) {
       toast.success("Senha redefinida!");
       setShowResetPanel(false);
-      setEmailForReset("");
-      setCode("");
-      setNewPass("");
     } else {
-      toast.error(res.message || "Código inválido");
+      toast.error(res.message);
     }
   };
+
 
   return (
     <div className={`container ${isActive ? "active" : ""}`}>
 
       {/* LOGIN */}
       <div className="form-box login">
-        <form onSubmit={handleLogin}>
+        <form onSubmit={isCompany ? handleLoginCompany : handleLogin}>
           <h1>Login</h1>
+
+          <div className="toggle-register-type">
+            <button
+              type="button"
+              id="btnUser"
+              className={!isCompany ? "selected" : ""}
+              onClick={() => setIsCompany(false)}
+            >
+              Usuário
+            </button>
+
+            <button
+              type="button"
+              id="btnCompany"
+              className={isCompany ? "selected" : ""}
+              onClick={() => setIsCompany(true)}
+            >
+              Empresa
+            </button>
+          </div>
+
 
           <div className="input-box">
             <input
@@ -166,15 +266,25 @@ export default function LoginRegister() {
           <h1>Cadastre-se</h1>
 
           <div className="toggle-register-type">
-            <button type="button" className={!isCompany ? "active" : ""} onClick={() => setIsCompany(false)}>
-              Usuário
+            <button
+              type="button"
+              id="btnUser"
+              className={!isCompany ? "selected" : ""}
+              onClick={() => setIsCompany(false)}
+            >
+              Login Usuário
             </button>
-            <button type="button" className={isCompany ? "active" : ""} onClick={() => setIsCompany(true)}>
-              Empresa
+
+            <button
+              type="button"
+              id="btnCompany"
+              className={isCompany ? "selected" : ""}
+              onClick={() => setIsCompany(true)}
+            >
+              Login Empresa
             </button>
           </div>
 
-          {/* Usuário */}
           {!isCompany && (
             <>
               <div className="input-box">
@@ -218,7 +328,6 @@ export default function LoginRegister() {
             </>
           )}
 
-          {/* Empresa */}
           {isCompany && (
             <>
               <div className="input-box">
@@ -287,11 +396,12 @@ export default function LoginRegister() {
               </div>
 
               <select
+                id="select"
                 className="input-box select"
                 required
-                value={companyForm.area}
+                value={companyForm.categories}
                 onChange={(e) =>
-                  setCompanyForm((prev) => ({ ...prev, area: e.target.value }))
+                  setCompanyForm((prev) => ({ ...prev, categories: e.target.value }))
                 }
               >
                 <option value="">Área de atuação</option>
@@ -319,7 +429,6 @@ export default function LoginRegister() {
         </form>
       </div>
 
-      {/* Botões de Toggle */}
       <div className="toggle-box">
         <div className="toggle-panel toggle-left">
           <button type="button" className="btn register-btn" onClick={() => setIsActive(true)}>
@@ -333,11 +442,59 @@ export default function LoginRegister() {
         </div>
       </div>
 
-      {/* IMAGEM */}
       <div
         className={`toggle-bg ${isActive ? "bg-register" : "bg-login"}`}
         style={{ backgroundImage: `url(${isActive ? registerImg : loginImg})` }}
       ></div>
+
+      {/*RECUPERAÇÃO DE SENHA*/}
+      {showResetPanel && (
+        <div className="reset-overlay">
+          <div className="reset-modal">
+            <h2>Recuperar senha - {isCompany ? "Empresa" : "Usuário"}</h2>
+
+            <label>Email</label>
+            <input
+              value={emailForReset}
+              onChange={(e) => setEmailForReset(e.target.value)}
+              placeholder="Seu e-mail"
+            />
+
+            <button className="btn" onClick={handleForgot}>Enviar código</button>
+
+            <div className="divider"></div>
+
+            <label>Código recebido</label>
+            <input
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              placeholder="Código"
+            />
+
+            <label>Nova senha</label>
+            <input
+              type="password"
+              value={newPass}
+              onChange={(e) => setNewPass(e.target.value)}
+              placeholder="Nova senha"
+            />
+
+            <button className="btn" onClick={handleReset}>Redefinir</button>
+
+            <button
+              className="btn-close"
+              onClick={() => {
+                setShowResetPanel(false);
+                setCode("");
+                setEmailForReset("");
+                setNewPass("");
+              }}
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
 
       <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </div>

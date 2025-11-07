@@ -1,67 +1,44 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Company = require("../models/Company");
+const { sendResetEmail } = require("../utils/mailer");
 
 exports.registerCompany = async (req, res) => {
   try {
-    const {
-      companyName,
-      responsibleName,
-      email,
-      password,
-      phone,
-      street,
-      number,
-      neighborhood,
-      city,
-      state,
-      categories
-    } = req.body;
+    const { email, password, ...rest } = req.body;
 
-    if (!companyName || !responsibleName || !email || !password || !phone || !categories) {
-      return res.status(400).json({
-        message: "Todos os campos obrigatórios devem ser preenchidos: companyName, responsibleName, email, password, phone e categories"
-      });
-    }
-
-    let formattedCategories;
-    if (typeof categories === "string") {
-      try {
-        formattedCategories = JSON.parse(categories);
-      } catch {
-        formattedCategories = [categories]
-      }
-    } else {
-      formattedCategories = categories
+    const existing = await Company.findOne({ where: { email } });
+    if (existing) {
+      return res.status(400).json({ message: "Este email já está cadastrado." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const company = await Company.create({
-      companyName,
-      responsibleName,
       email,
       password: hashedPassword,
-      phone,
-      street,
-      number,
-      neighborhood,
-      city,
-      state,
-      categories: formattedCategories
+      ...rest,
     });
+
+    const token = jwt.sign(
+      { id: company.id, type: "company" },
+      process.env.JWT_SECRET || "secret",
+      { expiresIn: "7d" }
+    );
 
     return res.status(201).json({
       message: "Empresa cadastrada com sucesso!",
-      company
+      type: "company",
+      token,
+      company: {
+        id: company.id,
+        companyName: company.companyName,
+        email: company.email
+      }
     });
 
   } catch (error) {
-    console.error(error);
-    return res.status(400).json({
-      message: "Erro ao cadastrar empresa",
-      error: error.message
-    });
+    return res.status(500).json({ message: "Erro ao cadastrar empresa", error });
   }
 };
 
@@ -69,35 +46,74 @@ exports.loginCompany = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: "Email e senha são obrigatórios" });
-    }
-
     const company = await Company.findOne({ where: { email } });
-
     if (!company) {
-      return res.status(404).json({ message: "Empresa não encontrada" });
+      return res.status(404).json({ message: "Email não cadastrado" });
     }
 
     const match = await bcrypt.compare(password, company.password);
     if (!match) {
-      return res.status(401).json({ message: "Senha incorreta" });
+      return res.status(400).json({ message: "Senha incorreta" });
     }
 
     const token = jwt.sign(
       { id: company.id, type: "company" },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || "secret",
       { expiresIn: "7d" }
     );
 
     return res.json({
-      message: "Login realizado com sucesso",
+      message: "Login realizado com sucesso!",
+      type: "company",
       token,
-      company
+      company: {
+        id: company.id,
+        companyName: company.companyName,
+        email: company.email,
+      }
     });
 
   } catch (error) {
-    console.error(error);
+    console.log("Erro login empresa:", error);
     return res.status(500).json({ message: "Erro no login", error: error.message });
+
+  }
+};
+
+exports.forgotPasswordCompany = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const company = await Company.findOne({ where: { email } });
+
+    if (!company) return res.status(404).json({ message: "Empresa não encontrada" });
+
+    const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+    company.resetCode = resetCode;
+    await company.save();
+
+    await sendResetEmail(company.email, resetCode);
+
+    res.json({ message: "Código de recuperação enviado ao e-mail" });
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao enviar código: " + err.message });
+  }
+};
+
+exports.resetPasswordCompany = async (req, res) => {
+  try {
+    const { email, code, newPassword } = req.body;
+    const company = await Company.findOne({ where: { email } });
+
+    if (!company || company.resetCode !== code.trim()) {
+      return res.status(400).json({ message: "Código inválido ou expirado" });
+    }
+
+    company.password = await bcrypt.hash(newPassword, 10);
+    company.resetCode = null;
+    await company.save();
+
+    res.json({ message: "Senha redefinida com sucesso" });
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao redefinir senha: " + err.message });
   }
 };

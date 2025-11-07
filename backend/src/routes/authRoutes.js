@@ -8,7 +8,8 @@ const {
   getUsers,
   getProfile
 } = require("../controllers/authController");
-const authMiddleware = require("../middleware/auth");
+
+const authUser = require("../middleware/authUser");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -17,6 +18,6 @@ router.post("/reset-password", resetPassword);
 
 router.get("/users", getUsers);
 
-router.get("/me", authMiddleware, getProfile);
+router.get("/me", authUser, getProfile);
 
 module.exports = router;

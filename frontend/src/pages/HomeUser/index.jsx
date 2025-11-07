@@ -47,7 +47,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Dúvidas Frequentes */} //tenho que alterar
+      {/* Dúvidas Frequentes */}
       <section className="home-faq">
         <div className="faq-text">
           <h2>Dúvidas Frequentes</h2>

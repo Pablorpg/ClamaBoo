@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const { FORCE } = require("sequelize/lib/index-hints");
 require("dotenv").config();
 
 const sequelize = new Sequelize(
