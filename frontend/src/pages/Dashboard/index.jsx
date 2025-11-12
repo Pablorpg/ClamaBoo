@@ -1,8 +1,23 @@
-export default function DashboardCompany() {
+import './style.css'
+import LogoClamaBoo from "../../assets/ClamaBooLogo.png";
+
+export default function Dashboard() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Painel da Empresa</h1>
-      <p>Aqui a empresa irá visualizar e gerenciar as denúncias.</p>
+    <div className='dashboard-body'>
+      <header className="navbar">
+        <div className="logo">
+          <img className="logoClamaBoo" src={LogoClamaBoo} alt="Logo" />
+        </div>
+
+        <nav>
+          <ul>
+            <li className="active">DashBoard</li>
+            <li>Doações</li>
+            <li>Denúncias</li>
+            <li>Perfil</li>
+          </ul>
+        </nav>
+      </header>
     </div>
   );
 }

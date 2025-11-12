@@ -6,6 +6,10 @@ import rabbitImg from "../../assets/rabbit.png";
 import pomeranianImg from "../../assets/pomeranian.png";
 import recadoImg from "../../assets/recado.png";
 import LogoClamaBoo from "../../assets/ClamaBooLogo.png";
+import element1 from "../../assets/elemento1.png"
+import element2 from "../../assets/elemento2.png"
+import element3 from "../../assets/elemento3.png"
+import element4 from "../../assets/elemento4.png"
 import { useNavigate } from "react-router-dom";
 
 export default function HomeUser() {
@@ -49,40 +53,46 @@ export default function HomeUser() {
     if (storedName) setUserName(storedName);
   }, []);
 
-  return (
+  return (<>
+    <header className="navbar">
+      <div className="logo">
+        <img className="logoClamaBoo" src={LogoClamaBoo} alt="Logo" />
+      </div>
+
+      <nav>
+        <ul>
+          <li className="active">Início</li>
+          <li>Perfil</li>
+        </ul>
+      </nav>
+    </header>
     <div className="home-body">
-      <header className="navbar">
-        <div className="logo">
-          <img className="logoClamaBoo" src={LogoClamaBoo} alt="Logo" />
-        </div>
-
-        <nav>
-          <ul>
-            <li className="active">Início</li>
-            <li>Perfil</li>
-          </ul>
-        </nav>
-      </header>
-
       <section className="home-hero">
         <h1 className="welcome-text">
-          Bem-vindo{userName ? `, ${userName}` : ""}! 👋
+          Bem-vindo{userName ? `, ${userName}` : ""}!
         </h1>
 
         <h2>Ajude cães, gatos e outros animais em risco com sua doação e denúncia.</h2>
 
         <div className="home-cards">
           <div className="card orange">
-            <img src={dogImg} alt="Doações" />
-            <p>Doações</p>
+            <div className="carddog" >
+              <img src={dogImg} className="imgdog" alt="Doações" /></div>
+            <p className="txtDoacoes">Doações</p>
           </div>
+
           <div className="card blue">
-            <img src={catImg} alt="Denúncias" />
-            <p>Denúncias</p>
+            <div className="cardcat">
+              <img src={catImg} className="imgcat" alt="Denúncias" />
+            </div>
+            <p className="txtDenuncias">Denúncias</p>
           </div>
+
           <div className="card pink">
-            <img src={rabbitImg} alt="Contato" />
-            <p>Contato</p>
+            <div className="cardrabbit">
+              <img src={rabbitImg} className="imgrabbit" alt="Contato" />
+            </div>
+            <p className="txtDuvidas">Dúvidas</p>
           </div>
         </div>
       </section>
@@ -94,8 +104,16 @@ export default function HomeUser() {
           <button className="btn-search" onClick={() => setShowSearchModal(true)}>Pesquisar</button>
         </div>
         <div className="faq-image">
-          <img src={pomeranianImg} alt="Cachorro feliz" />
+          <img src={pomeranianImg} className="imgdog2" alt="Cachorro feliz" />
         </div>
+
+        <div className="elementsDesing">
+          <img src={element1} className="element1" alt="" />
+          <img src={element2} className="element2" alt="" />
+          <img src={element3} className="element3" alt="" />
+          <img src={element4} className="element4" alt="" />
+        </div>
+
       </section>
 
       <section className="home-recado">
@@ -146,11 +164,9 @@ export default function HomeUser() {
                     </button>
                   </div>
 
-
                 ))}
               </div>
             )}
-
 
             {!loading && searchResults.length === 0 && <p>Nenhuma empresa encontrada.</p>}
 
@@ -160,5 +176,7 @@ export default function HomeUser() {
       )}
 
     </div>
+  </>
+
   );
 }

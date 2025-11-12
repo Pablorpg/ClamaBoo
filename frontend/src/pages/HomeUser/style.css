@@ -1,22 +1,26 @@
-
 .home-body {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 1380px;
   font-family: "Poppins", sans-serif;
   background: #FFF2E0;
   color: #000;
 }
 
 .navbar {
+  height: 70px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 50px;
+  padding: 40px 45px 40px 30px;
+  background-color: #FFF6E1;
+  position: fixed;
+  z-index: 1;
 }
 
 .logoClamaBoo {
-  height: 70px;
-  position: relative;
+  height: 150px;
+  margin-left: 20px;
 }
 
 .navbar nav ul {
@@ -45,18 +49,22 @@
 
 .home-hero {
   text-align: center;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+  margin-top: 80px;
 }
+
 .home-hero h2 {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   font-size: 22px;
 }
+
 .home-cards {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
 }
+
 .card {
   width: 150px;
   border-radius: 20px;
@@ -65,30 +73,46 @@
   color: #fff;
   cursor: pointer;
 }
+
 .card img {
   width: 100%;
   border-radius: 15px;
   margin-bottom: 10px;
 }
-.card.orange { background: #FFB966; }
-.card.blue { background: #A3C4FF; color: #000; }
-.card.pink { background: #FF9AA2; }
+
+.card.orange {
+  background: #FFB966;
+}
+
+.card.blue {
+  background: #A3C4FF;
+  color: #000;
+}
+
+.card.pink {
+  background: #FF9AA2;
+}
 
 .home-faq {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 500px;
+  background-color: white;
   padding: 50px 20px;
   flex-wrap: wrap;
 }
+
 .faq-text h2 {
   font-size: 28px;
   margin-bottom: 15px;
 }
+
 .faq-text p {
   font-size: 16px;
   margin-bottom: 15px;
 }
+
 .btn-search {
   background: #FFB966;
   border: none;
@@ -96,6 +120,11 @@
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.btn-search:hover {
+  background: #d39446;
+}
+
 .faq-image img {
   width: 250px;
   border-radius: 50%;
@@ -108,15 +137,19 @@
   gap: 20px;
   background: #FFF2E0;
   flex-wrap: wrap;
+  margin-top: 50px;
 }
+
 .home-recado img {
   width: 200px;
   border-radius: 20px;
 }
+
 .recado-text h3 {
   margin-bottom: 10px;
   font-size: 22px;
 }
+
 .recado-text p {
   font-size: 16px;
 }
@@ -127,7 +160,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,16 +306,123 @@
 }
 
 .modal-box .search-results::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
 
 .modal-box .search-results::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
+.welcome-text {
+  margin-top: 30px;
+}
 
-@keyframes fadeIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@media screen and (min-width: 1024px) {
+
+  .navbar {
+    height: 70px;
+    width: 1950px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 45px 40px 30px;
+    background-color: #FFF6E1;
+    position: fixed;
+    z-index: 1;
+  }
+
+  .card {
+    height: 380px;
+    width: 300px;
+    padding: 0;
+    border-radius: 50px;
+  }
+
+  .carddog {
+    background-color: #FED8AD;
+    padding-bottom: 40px;
+    border-radius: 50px;
+  }
+
+  .imgdog {
+    position: relative;
+    top: 63px;
+  }
+
+  .txtDoacoes {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .cardcat {
+    background-color: #BBD6F8;
+    padding-bottom: 70px;
+    border-radius: 50px;
+  }
+
+  .imgcat {
+    position: relative;
+    top: 87px;
+    right: 15px;
+  }
+
+  .txtDenuncias {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .cardrabbit {
+    background-color: #FFB6B8;
+    padding-bottom: 60px;
+    border-radius: 50px;
+  }
+
+  .imgrabbit {
+    position: relative;
+    top: 88px;
+  }
+
+  .txtDuvidas {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .imgdog2 {
+    position: relative;
+    left: 500px;
+  }
+
+  .element1 {
+    width: 400px;
+  }
+
+  .element2 {
+    position: absolute;
+    left: 500px;
+    top: 650px;
+  }
+
+  .element3 {
+    position: absolute;
+    left: 0px;
+    top: 980px;
+  }
+
+  .element4 {
+    position: absolute;
+    left: 0px;
+    top: 1243px;
+  }
+
+  .home-recado {
+    display: flex;
+    justify-content: center;
+  }
+
 }
