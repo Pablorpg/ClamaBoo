@@ -5,25 +5,7 @@ import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register, login, forgot, reset, registerCompany, loginCompany } from "../../services/auth";
-
-export async function forgotCompany(email) {
-  const res = await fetch("http://localhost:5000/api/company/forgot-password", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  });
-  return res.json();
-}
-
-export async function resetCompany(data) {
-  const res = await fetch("http://localhost:5000/api/company/reset-password", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-  return res.json();
-}
-
+import { forgotCompany, resetCompany } from "../../services/companyAuth";
 
 export default function LoginRegister() {
   const [isActive, setIsActive] = useState(false);
@@ -134,7 +116,7 @@ export default function LoginRegister() {
       if (res.token && res.type === "company") {
         localStorage.setItem("companyToken", res.token);
         toast.success("Empresa logada com sucesso!");
-        setTimeout(() => (window.location.href = "/empresa"), 1500);
+        setTimeout(() => (window.location.href = "/empresa/dashboard"), 1500);
       } else {
         toast.error(res.message || "Credenciais inválidas");
       }
@@ -155,16 +137,20 @@ export default function LoginRegister() {
 
     try {
       const res = await login({ email: email.trim(), password: password.trim() });
-      if (res.message?.toLowerCase().includes("sucesso")) {
-        toast.success(res.message);
-        setTimeout(() => (window.location.href = "/usuario/HomeUser"), 1500);
+
+      if (res.token) {
+        localStorage.setItem("userToken", res.token);
+        localStorage.setItem("userName", res.user.username);
+        localStorage.setItem("userEmail", email.trim());
+        toast.success("Login realizado com sucesso!");
+        setTimeout(() => (window.location.href = "/Inicio"), 1500);
       } else {
         toast.error(res.message || "Credenciais inválidas");
       }
     } catch (err) {
-      toast.error(err.message);
+      toast.error("Erro ao fazer login.");
     }
-  };
+  }
 
   const handleForgot = async () => {
     if (!emailForReset.trim()) return toast.warn("Informe o e-mail");
@@ -200,7 +186,6 @@ export default function LoginRegister() {
   return (
     <div className={`container ${isActive ? "active" : ""}`}>
 
-      {/* LOGIN */}
       <div className="form-box login">
         <form onSubmit={isCompany ? handleLoginCompany : handleLogin}>
           <h1>Login</h1>
@@ -260,7 +245,6 @@ export default function LoginRegister() {
         </form>
       </div>
 
-      {/* CADASTRO */}
       <div className="form-box register">
         <form onSubmit={isCompany ? handleRegisterCompany : handleRegister}>
           <h1>Cadastre-se</h1>
@@ -447,7 +431,6 @@ export default function LoginRegister() {
         style={{ backgroundImage: `url(${isActive ? registerImg : loginImg})` }}
       ></div>
 
-      {/*RECUPERAÇÃO DE SENHA*/}
       {showResetPanel && (
         <div className="reset-overlay">
           <div className="reset-modal">

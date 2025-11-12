@@ -117,3 +117,4 @@ exports.resetPasswordCompany = async (req, res) => {
     res.status(500).json({ message: "Erro ao redefinir senha: " + err.message });
   }
 };
+
