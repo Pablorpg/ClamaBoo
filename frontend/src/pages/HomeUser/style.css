@@ -1,6 +1,6 @@
 .home-body {
   width: 100vw;
-  min-height: 1380px;
+  min-height: 1080px;
   font-family: "Poppins", sans-serif;
   background: #FFF2E0;
   color: #000;
@@ -8,19 +8,23 @@
 
 .navbar {
   height: 70px;
-  width: 100%;
+  width: 1500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px 45px 40px 30px;
   background-color: #FFF6E1;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
 }
 
 .logoClamaBoo {
   height: 150px;
   margin-left: 20px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .navbar nav ul {
@@ -78,6 +82,10 @@
   width: 100%;
   border-radius: 15px;
   margin-bottom: 10px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .card.orange {
@@ -128,6 +136,10 @@
 .faq-image img {
   width: 250px;
   border-radius: 50%;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .home-recado {
@@ -143,6 +155,10 @@
 .home-recado img {
   width: 200px;
   border-radius: 20px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .recado-text h3 {
@@ -261,6 +277,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .company-img {
@@ -269,6 +289,10 @@
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ff7a59;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .company-info h3 {
@@ -318,11 +342,148 @@
   margin-top: 30px;
 }
 
-@media screen and (min-width: 1024px) {
+.card {
+  height: 300px;
+  width: 250px;
+  padding: 0;
+  border-radius: 50px;
+}
+
+.carddog {
+  background-color: #FED8AD;
+  padding-bottom: 40px;
+  border-radius: 50px;
+}
+
+.imgdog {
+  position: relative;
+  top: 63px;
+}
+
+.txtDoacoes {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cardcat {
+  background-color: #BBD6F8;
+  padding-bottom: 70px;
+  border-radius: 50px;
+}
+
+.imgcat {
+  position: relative;
+  top: 87px;
+  right: 15px;
+}
+
+.txtDenuncias {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+}
+
+.cardrabbit {
+  background-color: #FFB6B8;
+  padding-bottom: 60px;
+  border-radius: 50px;
+}
+
+.imgrabbit {
+  position: relative;
+  top: 85px;
+}
+
+.txtDuvidas {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+}
+
+.imgdog2 {
+  width: 350px !important;
+  position: relative;
+  top: 20px;
+  left: 130px;
+  z-index: 1;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.element1 {
+  width: 450px;
+  position: absolute;
+  left: 980px;
+  top: 600px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.element2 {
+  position: absolute;
+  top: 600px;
+  left: 350px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.element3 {
+  width: 250px;
+  position: absolute;
+  left: 0px;
+  top: 920px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.element4 {
+  width: 400px;
+  position: absolute;
+  left: 0;
+  top: 1168px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.element5 {
+  width: 150px;
+  position: absolute;
+  left: 230px;
+  top: 1175px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.imgrecado {
+  z-index: 1;
+}
+
+.home-recado {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+@media (min-width: 1921px) {
 
   .navbar {
     height: 70px;
-    width: 1950px;
+    width: 1921px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -395,11 +556,14 @@
 
   .imgdog2 {
     position: relative;
-    left: 500px;
+    top: 0px;
+    left: 400px;
   }
 
   .element1 {
     width: 400px;
+    left: 1500px;
+    top: 700px;
   }
 
   .element2 {
@@ -409,9 +573,10 @@
   }
 
   .element3 {
+    width: 300px;
     position: absolute;
     left: 0px;
-    top: 980px;
+    top: 970px;
   }
 
   .element4 {
@@ -420,9 +585,27 @@
     top: 1243px;
   }
 
+  .element5 {
+    position: absolute;
+    left: 450px;
+    top: 1253px;
+  }
+
   .home-recado {
     display: flex;
     justify-content: center;
+  }
+
+  .home-cards {
+    margin-left: 1;
+  }
+
+  .txtEmpresas {
+    font-size: 3rem !important;
+  }
+
+  .txtEmpresa {
+    font-size: 1.4rem !important;
   }
 
 }

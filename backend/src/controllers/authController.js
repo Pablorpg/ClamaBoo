@@ -1,10 +1,11 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const { sendResetEmail } = require("../utils/mailer");
-require("dotenv").config();
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import { sendResetEmail } from "../utils/mailer.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -27,10 +28,9 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: "Usuário criado com sucesso!", user });
   } catch (err) {
     if (err.name === "SequelizeValidationError") {
-      const messages = err.errors.map((e) => {
-        if (e.validatorKey === "isEmail") return "O e-mail fornecido é inválido.";
-        return e.message;
-      });
+      const messages = err.errors.map((e) =>
+        e.validatorKey === "isEmail" ? "O e-mail fornecido é inválido." : e.message
+      );
       return res.status(400).json({ message: messages });
     }
 
@@ -38,40 +38,28 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
-
   const user = await User.findOne({ where: { email } });
 
-  if (!user) {
-    return res.status(400).json({ message: "Este e-mail não está cadastrado." });
-  }
+  if (!user) return res.status(400).json({ message: "Este e-mail não está cadastrado." });
 
   const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) return res.status(400).json({ message: "A senha está incorreta." });
 
-  if (!passwordMatch) {
-    return res.status(400).json({ message: "A senha está incorreta." });
-  }
-
-  const token = jwt.sign(
-    { id: user.id, type: "user" },
-    process.env.JWT_SECRET,
-    { expiresIn: "7d" }
-  );
+  const token = jwt.sign({ id: user.id, type: "user" }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
 
   return res.json({
     message: "Login realizado com sucesso!",
     type: "user",
     token,
-    user: {
-      id: user.id,
-      username: user.username,
-      email: user.email
-    }
+    user: { id: user.id, username: user.username, email: user.email },
   });
-}
+};
 
-exports.forgotPassword = async (req, res) => {
+export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -83,21 +71,19 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
     await sendResetEmail(user.email, resetCode);
-
     res.json({ message: "Código de recuperação enviado ao e-mail" });
   } catch (err) {
     res.status(500).json({ message: "Erro ao enviar código de recuperação: " + err.message });
   }
 };
 
-exports.resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const { email, code, newPassword } = req.body;
     const user = await User.findOne({ where: { email } });
 
-    if (!user || !user.resetCode || user.resetCode.trim() !== code.trim()) {
+    if (!user || !user.resetCode || user.resetCode.trim() !== code.trim())
       return res.status(400).json({ message: "Código inválido ou expirado" });
-    }
 
     user.password = await bcrypt.hash(newPassword, 10);
     user.resetCode = null;
@@ -109,10 +95,10 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-exports.getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.findAll({
-      attributes: ["id", "username", "email", "createdAt"]
+      attributes: ["id", "username", "email", "createdAt"],
     });
     res.json(users);
   } catch (err) {
@@ -120,10 +106,10 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id, {
-      attributes: ["id", "username", "email", "createdAt"]
+      attributes: ["id", "username", "email", "createdAt"],
     });
     if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
     res.json(user);

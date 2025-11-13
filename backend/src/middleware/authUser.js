@@ -1,9 +1,13 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-module.exports = (req, res, next) => {
+dotenv.config();
+
+export default function authUser(req, res, next) {
   const token = req.cookies?.token;
-  if (!token) return res.status(401).json({ message: "Login necessário" });
+  if (!token) {
+    return res.status(401).json({ message: "Login necessário" });
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -17,4 +21,4 @@ module.exports = (req, res, next) => {
   } catch {
     return res.status(401).json({ message: "Token inválido ou expirado" });
   }
-};
+}

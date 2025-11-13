@@ -1,7 +1,7 @@
-const { Op, Sequelize } = require("sequelize");
-const Company = require("../models/Company");
+import { Op, Sequelize } from "sequelize";
+import Company from "../models/Company.js";
 
-exports.searchCompanies = async (req, res) => {
+export const searchCompanies = async (req, res) => {
   try {
     const { category } = req.query;
 
@@ -12,8 +12,8 @@ exports.searchCompanies = async (req, res) => {
     const companies = await Company.findAll({
       where: Sequelize.where(
         Sequelize.fn(
-          'JSON_CONTAINS',
-          Sequelize.col('categories'),
+          "JSON_CONTAINS",
+          Sequelize.col("categories"),
           JSON.stringify(category)
         ),
         1
@@ -28,12 +28,12 @@ exports.searchCompanies = async (req, res) => {
   }
 };
 
-exports.getCompanyById = async (req, res) => {
+export const getCompanyById = async (req, res) => {
   try {
     const { id } = req.params;
 
     const company = await Company.findByPk(id, {
-      attributes: ["id", "companyName", "description", "city", "state", "profileImage"]
+      attributes: ["id", "companyName", "description", "city", "state"]
     });
 
     if (!company) {

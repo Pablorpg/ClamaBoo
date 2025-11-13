@@ -1,7 +1,9 @@
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
-async function sendResetEmail(to, code) {
+dotenv.config();
+
+export async function sendResetEmail(to, code) {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -30,5 +32,3 @@ async function sendResetEmail(to, code) {
     throw new Error("Não foi possível enviar o e-mail de redefinição.");
   }
 }
-
-module.exports = { sendResetEmail };

@@ -10,6 +10,7 @@ import element1 from "../../assets/elemento1.png"
 import element2 from "../../assets/elemento2.png"
 import element3 from "../../assets/elemento3.png"
 import element4 from "../../assets/elemento4.png"
+import element5 from "../../assets/elemento5.png"
 import { useNavigate } from "react-router-dom";
 
 export default function HomeUser() {
@@ -99,8 +100,8 @@ export default function HomeUser() {
 
       <section className="home-faq">
         <div className="faq-text">
-          <h2>Dúvidas Frequentes</h2>
-          <p>Cada gesto de amor transforma uma vida. Ao doar, você alimenta a esperança!!</p>
+          <h2 className="txtEmpresas">Procurar empresas</h2>
+          <p className="txtEmpresa">Cada gesto de amor transforma uma vida. Ao doar, você alimenta a esperança!!</p>
           <button className="btn-search" onClick={() => setShowSearchModal(true)}>Pesquisar</button>
         </div>
         <div className="faq-image">
@@ -112,12 +113,13 @@ export default function HomeUser() {
           <img src={element2} className="element2" alt="" />
           <img src={element3} className="element3" alt="" />
           <img src={element4} className="element4" alt="" />
+          <img src={element5} className="element5" alt="" />
         </div>
 
       </section>
 
       <section className="home-recado">
-        <img src={recadoImg} alt="Recado" />
+        <img src={recadoImg} className="imgrecado" alt="Recado" />
         <div className="recado-text">
           <h3>Um recado para vocês!</h3>
           <p>

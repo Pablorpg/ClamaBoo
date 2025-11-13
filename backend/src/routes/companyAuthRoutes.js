@@ -1,8 +1,19 @@
-const express = require("express");
+import express from "express";
+import {
+  registerCompany,
+  loginCompany,
+  forgotPasswordCompany,
+  resetPasswordCompany
+} from "../controllers/companyAuthController.js";
+
+import {
+  searchCompanies,
+  getCompanyById
+} from "../controllers/companyController.js";
+
+import authCompany from "../middleware/authCompany.js";
+
 const router = express.Router();
-const { registerCompany, loginCompany, forgotPasswordCompany, resetPasswordCompany } = require("../controllers/companyAuthController");
-const { searchCompanies, getCompanyById } = require("../controllers/companyController");
-const authCompany = require("../middleware/authCompany");
 
 router.post("/register", registerCompany);
 router.post("/login", loginCompany);
@@ -15,4 +26,4 @@ router.post("/reset-password", resetPasswordCompany);
 router.get("/search", searchCompanies);
 router.get("/:id", getCompanyById);
 
-module.exports = router;
+export default router;

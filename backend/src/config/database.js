@@ -1,6 +1,6 @@
-const { Sequelize } = require("sequelize");
-const { FORCE } = require("sequelize/lib/index-hints");
-require("dotenv").config();
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -13,4 +13,6 @@ const sequelize = new Sequelize(
   }
 );
 
-module.exports = sequelize;
+await sequelize.sync();
+
+export default sequelize;
