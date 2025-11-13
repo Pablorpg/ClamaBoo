@@ -11,6 +11,7 @@ import element2 from "../../assets/elemento2.png"
 import element3 from "../../assets/elemento3.png"
 import element4 from "../../assets/elemento4.png"
 import element5 from "../../assets/elemento5.png"
+
 import { useNavigate } from "react-router-dom";
 
 export default function HomeUser() {
