@@ -1,4 +1,3 @@
-// src/pages/Doar/DoarPet.jsx
 import { useState } from "react";
 import { toast } from "react-toastify";
 import NavbarUser from "../../components/NavbarUser";
@@ -43,7 +42,7 @@ export default function DoarPet() {
       });
 
       if (res.ok) {
-        toast.success("Pet encaminhado com sucesso! A ONG já foi notificada ❤️");
+        toast.success("Pet encaminhado com sucesso! A ONG já foi notificada.");
         setForm({ ...form, nome: "", idade: "", temperamento: "", local: "", mensagem: "", contato: "", foto: null });
         document.getElementById("foto").value = "";
       } else {
@@ -64,7 +63,7 @@ export default function DoarPet() {
         <p className="subtitle">Preencha os dados do bichinho que você encontrou</p>
 
         <form onSubmit={handleSubmit} className="doar-pet-form">
-          <div className="foto-preview">
+          <div className="foto-preview" onClick={() => document.getElementById("foto").click()}>
             {form.foto ? (
               <img src={URL.createObjectURL(form.foto)} alt="Preview" />
             ) : (
@@ -73,14 +72,16 @@ export default function DoarPet() {
             <input
               type="file"
               id="foto"
+              name="foto"
               accept="image/*"
-              required
               onChange={(e) => setForm({ ...form, foto: e.target.files[0] })}
             />
           </div>
 
+
+
           <input placeholder="Nome (ou 'sem nome')" value={form.nome} onChange={(e) => setForm({ ...form, nome: e.target.value })} />
-          
+
           <select value={form.especie} onChange={(e) => setForm({ ...form, especie: e.target.value })}>
             <option>Cachorro</option><option>Gato</option><option>Outro</option>
           </select>

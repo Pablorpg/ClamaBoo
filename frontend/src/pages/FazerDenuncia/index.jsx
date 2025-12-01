@@ -1,4 +1,3 @@
-// src/pages/FazerDenuncia.jsx
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NavbarUser from "../../components/NavbarUser";
@@ -11,14 +10,11 @@ export default function FazerDenuncia() {
   const empresaDoState = location.state?.empresa;
   const [empresaSelecionada, setEmpresaSelecionada] = useState(null);
 
-  // Se veio por state, grava apenas a seleção de DENÚNCIA (não altera seleção de doação)
   useEffect(() => {
     if (empresaDoState?.id) {
       setEmpresaSelecionada(empresaDoState);
       localStorage.setItem("empresaAtivaParaDenuncia", JSON.stringify(empresaDoState));
-      // NÃO sobrescrever empresaAtivaId nem empresaAtivaParaDoacao
     } else {
-      // tenta recuperar seleção salva (apenas para denúncias)
       const salva = localStorage.getItem("empresaAtivaParaDenuncia");
       if (salva) {
         const emp = JSON.parse(salva);
@@ -56,8 +52,30 @@ export default function FazerDenuncia() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.termos) return toast.error("Aceite os termos!");
-    if (!empresaSelecionada?.id) return toast.error("Nenhuma empresa selecionada!");
+
+    if (!empresaSelecionada?.id) {
+      return toast.error("Nenhuma empresa selecionada!");
+    }
+
+    const camposObrigatorios = [
+      { campo: "nome", label: "Nome completo" },
+      { campo: "telefone", label: "Telefone" },
+      { campo: "mensagem", label: "Mensagem" },
+      { campo: "endereco", label: "Endereço" },
+      { campo: "bairro", label: "Bairro" },
+      { campo: "cidade", label: "Cidade" },
+      { campo: "estado", label: "Estado" },
+    ];
+
+    for (let item of camposObrigatorios) {
+      if (!formData[item.campo].trim()) {
+        return toast.error(`Preencha o campo: ${item.label}`);
+      }
+    }
+
+    if (!formData.termos) {
+      return toast.error("Você deve aceitar os termos para enviar a denúncia.");
+    }
 
     const novaDenuncia = {
       id: Date.now(),
@@ -65,7 +83,6 @@ export default function FazerDenuncia() {
       mensagem: formData.mensagem || "Sem mensagem",
       foto: !!formData.arquivo,
       status: "nova",
-      // PASSAMOS explicitamente a empresa da denúncia (isolado)
       empresaId: String(empresaSelecionada.id),
       empresaNome: empresaSelecionada.companyName,
       detalhes: {
@@ -83,7 +100,16 @@ export default function FazerDenuncia() {
     toast.success(`Denúncia enviada para ${empresaSelecionada.companyName}!`);
 
     setFormData({
-      nome: "", telefone: "", mensagem: "", endereco: "", bairro: "", cidade: "", estado: "", pontoReferencia: "", arquivo: null, termos: false
+      nome: "",
+      telefone: "",
+      mensagem: "",
+      endereco: "",
+      bairro: "",
+      cidade: "",
+      estado: "",
+      pontoReferencia: "",
+      arquivo: null,
+      termos: false
     });
     setArquivoNome("Nenhum arquivo escolhido");
   };
@@ -114,7 +140,7 @@ export default function FazerDenuncia() {
           )}
 
           <div className="section">
-            <h2>Informações do Denunciante (opcional)</h2>
+            <h2>Informações do Denunciante</h2>
             <div className="row">
               <input type="text" name="nome" placeholder="Nome completo" value={formData.nome} onChange={handleChange} />
               <input type="tel" name="telefone" placeholder="Telefone para contato" value={formData.telefone} onChange={handleChange} />
@@ -140,13 +166,31 @@ export default function FazerDenuncia() {
                 <option value="">Estado</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
-                <option value="SP">São Paulo</option>
-                <option value="RJ">Rio de Janeiro</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
                 <option value="BA">Bahia</option>
-                <option value="MG">Minas Gerais</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
                 <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
                 <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
                 <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
               </select>
             </div>
             <input
@@ -162,11 +206,12 @@ export default function FazerDenuncia() {
           <div className="section">
             <h2>Evidências (se houver)</h2>
             <div className="file-upload">
-              <label htmlFor="arquivo" className="file-label">Escolher arquivo</label>
+              <label htmlFor="arquivo" id="file-label" className="file-label">Escolher arquivo</label>
               <input type="file" id="arquivo" accept="image/*,video/*" onChange={handleChange} />
               <span className="file-name">{arquivoNome}</span>
             </div>
           </div>
+
 
           <div className="section termos">
             <label className="checkbox-container">

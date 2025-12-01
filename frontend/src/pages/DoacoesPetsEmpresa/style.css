@@ -1,0 +1,62 @@
+.pets-container {
+  margin-top: 150px;
+  padding: 40px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.titulo-pets {
+  font-size: 2.4rem;
+  color: #D35400;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.nenhum-pet {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #7f8c8d;
+  margin-top: 40px;
+}
+
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.pet-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.2s;
+  text-align: center;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+}
+
+.pet-foto {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.temperamento {
+  margin: 8px 0;
+  color: #8e44ad;
+  font-size: 1rem;
+}
+
+.data {
+  display: block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #888;
+}

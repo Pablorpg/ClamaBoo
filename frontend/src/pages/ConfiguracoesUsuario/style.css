@@ -222,6 +222,12 @@ span {
   background: #b84300;
 }
 
+@media(min-width: 1520px) {
+  span {
+    width: 400px;
+    margin-left: 60px;
+  }
+}
 
 @keyframes fadeIn {
   from {

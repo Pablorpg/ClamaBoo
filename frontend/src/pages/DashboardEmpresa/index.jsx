@@ -1,4 +1,3 @@
-// src/pages/DashboardEmpresa.jsx
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import NavbarCompany from "../../components/NavbarCompany";
@@ -14,7 +13,6 @@ export default function DashboardEmpresa() {
   const [denunciasResolvidas, setDenunciasResolvidas] = useState(0);
 
   const carregarDados = () => {
-    // Por padrão aqui o getEmpresaIdCorreto() retorna companyData.id quando companyToken existe
     const empresaId = getEmpresaIdCorreto();
     if (!empresaId) return;
 

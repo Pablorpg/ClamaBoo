@@ -4,6 +4,7 @@
   padding: 120px 20px 80px;
   text-align: center;
   font-family: "Poppins", sans-serif;
+  margin-top: 100px;
 }
 
 .titulo-pagina {
@@ -66,6 +67,7 @@
 
 .status-doacao {
   background: #27ae60;
+  width: 120px;
   color: white;
   padding: 10px 24px;
   border-radius: 50px;

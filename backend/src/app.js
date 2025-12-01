@@ -25,6 +25,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
 app.use(cookieParser());
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
@@ -33,5 +34,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/follow", followRoutes);
 app.use("/api/donate", donateRoutes);
+
+app.get("/", (req, res) => {
+  res.send("API rodando!");
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Erro interno no servidor" });
+});
 
 export default app;

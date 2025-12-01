@@ -7,12 +7,11 @@ import "./App.css";
 import ProtectedUserRoute from "./routes/ProtectedUserRoute";
 import ProtectedCompanyRoute from "./routes/ProtectedCompanyRoute";
 
-// PÁGINAS DO USUÁRIO
 import LoginCadastro from "./pages/LoginCadastro";
 import InicioUsuario from "./pages/InicioUsuario";
 import MinhasEmpresas from "./pages/MinhasEmpresas";
 import FazerDenuncia from "./pages/FazerDenuncia";
-import DoarEmpresa from "./pages/DoarParaEmpresa";           // ← sua página antiga de doar dinheiro
+import DoarEmpresa from "./pages/DoarParaEmpresa";
 import PerfilUsuario from "./pages/PerfilUsuario";
 import MinhasDoacoes from "./pages/MinhasDoacoes";
 import MinhasDenuncias from "./pages/MinhasDenuncias";
@@ -21,17 +20,16 @@ import ContaDesativadaEmpresa from "./pages/ContaDesativadaEmpresa";
 import EditarInformacoesConta from "./pages/EditarInformacoesConta";
 
 
-// NOVAS PÁGINAS DE DOAÇÃO (AS QUE A GENTE FEZ HOJE)
-import Doar from "./pages/Doar/Doar";           // ← tela de escolha (dinheiro ou pet
-import DoarPet from "./pages/Doar/DoarPet";     // ← doar animal encontrado
+import Doar from "./pages/Doar/Doar";
+import DoarPet from "./pages/Doar/DoarPet";
 
-// PÁGINAS DA EMPRESA
 import DashboardEmpresa from "./pages/DashboardEmpresa";
 import EditarPerfilEmpresa from "./pages/EditarPerfilEmpresa";
 import DoacoesEmpresa from "./pages/DoacoesEmpresa";
 import DenunciasEmpresa from "./pages/DenunciasEmpresa";
 import PerfilPublicoEmpresa from "./pages/PerfilPublicoEmpresa";
 import ReceberDoacoes from "./pages/ReceberDoacoes";
+import DoacoesPetsEmpresa from "./pages/DoacoesPetsEmpresa";
 import ConfiguracoesEmpresa from "./pages/ConfiguracoesEmpresa";
 
 export default function App() {
@@ -51,7 +49,7 @@ export default function App() {
         {/* Página inicial */}
         <Route path="/" element={<LoginCadastro />} />
 
-        {/* ==================== USUÁRIO ==================== */}
+        {/*usuario */}
         <Route
           path="/Inicio"
           element={
@@ -79,7 +77,6 @@ export default function App() {
           }
         />
 
-        {/* NOVA TELA DE ESCOLHA */}
         <Route
           path="/doar"
           element={
@@ -89,7 +86,6 @@ export default function App() {
           }
         />
 
-        {/* DOAR DINHEIRO (sua página antiga) */}
         <Route
           path="/doar-dinheiro"
           element={
@@ -99,7 +95,6 @@ export default function App() {
           }
         />
 
-        {/* DOAR UM PET (NOVA FUNCIONALIDADE) */}
         <Route
           path="/doar-pet"
           element={
@@ -155,7 +150,7 @@ export default function App() {
           }
         />
 
-        {/* ==================== EMPRESA ==================== */}
+        {/* empresa*/}
         <Route
           path="/empresa/dashboard"
           element={
@@ -200,6 +195,8 @@ export default function App() {
             </ProtectedCompanyRoute>
           }
         />
+
+        <Route path="/empresa/pets" element={<DoacoesPetsEmpresa />} />
 
         <Route path="/empresa/perfil/:id" element={<PerfilPublicoEmpresa />} />
         <Route path="/empresa/conta-desativada" element={<ContaDesativadaEmpresa />} />

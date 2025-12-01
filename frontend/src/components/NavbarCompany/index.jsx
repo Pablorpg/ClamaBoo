@@ -36,26 +36,37 @@ export default function NavbarCompany() {
             >
               Dashboard
             </li>
+
             <li
               className={isActive("/empresa/doacoes") ? "active" : ""}
               onClick={() => navigate("/empresa/doacoes")}
             >
               Doações
             </li>
+
+            <li
+              className={isActive("/empresa/pets") ? "active" : ""}
+              onClick={() => navigate("/empresa/pets")}
+            >
+              Adoção de Pets
+            </li>
+
             <li
               className={isActive("/empresa/denuncias") ? "active" : ""}
               onClick={() => navigate("/empresa/denuncias")}
             >
               Denúncias
             </li>
+
             <li
               className={isActive("/empresa/editar-perfil") ? "active" : ""}
-              onClick={() => navigate("/empresa/editar-perfil")} 
+              onClick={() => navigate("/empresa/editar-perfil")}
             >
               Perfil
             </li>
           </ul>
         </nav>
+
       </div>
     </header>
   );

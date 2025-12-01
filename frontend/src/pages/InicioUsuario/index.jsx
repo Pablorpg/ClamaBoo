@@ -83,7 +83,7 @@ export default function InicioUsuario() {
 
       <div className="home-body">
         <section className="home-hero">
-          <h1 className="welcome-text">
+          <h1 className="bemvindo">
             Bem-vindo{userName ? `, ${userName}` : ""}!
           </h1>
           <h2>Ajude cães, gatos e outros animais em risco com sua doação e denúncia.</h2>

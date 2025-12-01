@@ -3,7 +3,8 @@
   background: linear-gradient(135deg, #FFF6E1 0%, #FFE8B3 100%);
   padding-top: 100px;
   padding: 40px 20px;
-  margin-top: 50px;
+  margin-top: 100px;
+  border-radius: 10px;
 }
 
 .dashboard-container {

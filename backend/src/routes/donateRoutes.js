@@ -6,27 +6,40 @@ import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
+// --- CONFIGURAÇÃO DO MULTER ---
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/pets/");
+    const uploadPath = path.join(process.cwd(), "uploads/pets");
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, `pet-${Date.now()}${ext}`);
   }
 });
+
 const upload = multer({ storage });
 
+// --- ROTA DE ENVIO DE PET ---
 router.post("/pet", verifyToken, upload.single("foto"), async (req, res) => {
   try {
+    // LOG PARA DEBUG: veja se o arquivo chegou
+    console.log("req.file:", req.file);
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Arquivo de foto não enviado." });
+    }
+
     const { companyId, nome, especie, idade, sexo, castrado, temperamento, local, mensagem, contato } = req.body;
 
     if (!companyId || !local || !contato) {
       return res.status(400).json({ message: "Campos obrigatórios faltando" });
     }
 
+    const fotoPath = `/uploads/pets/${req.file.filename}`;
+
     await PetDonation.create({
-      foto: `/uploads/pets/${req.file.filename}`,
+      foto: fotoPath,
       nome: nome || "Sem nome",
       especie,
       idade,
@@ -41,7 +54,7 @@ router.post("/pet", verifyToken, upload.single("foto"), async (req, res) => {
       status: "pendente"
     });
 
-    res.status(201).json({ message: "Animal encaminhado com sucesso! A ONG já foi notificada" });
+    res.status(201).json({ message: "Animal encaminhado com sucesso! A ONG já foi notificada", fotoPath });
   } catch (err) {
     console.error("Erro ao salvar doação de pet:", err);
     res.status(500).json({ message: "Erro no servidor" });

@@ -63,6 +63,7 @@ html {
 }
 
 .home-hero h2 {
+  color: #000;
   margin-bottom: 50px;
   font-size: 22px;
 }
@@ -351,8 +352,9 @@ html {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.welcome-text {
+.bemvindo {
   margin-top: 30px;
+  color: #000;
 }
 
 .card {
@@ -514,7 +516,6 @@ html {
   .navbar {
     height: 70px;
     width: 1921px;
-    /* OU width: 100%; max-width: 1921px */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -554,7 +555,7 @@ html {
 
   .element4 {
     left: 0px;
-    top: 1243px;
+    top: 1237px;
   }
 
   .element5 {

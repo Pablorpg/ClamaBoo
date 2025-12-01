@@ -116,6 +116,10 @@ textarea {
   line-height: 1.5;
 }
 
+input[type="file"] {
+  display: none;
+}
+
 .checkmark {
   width: 24px;
   height: 24px;
@@ -124,6 +128,7 @@ textarea {
   flex-shrink: 0;
   position: relative;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .checkbox-container input:checked ~ .checkmark {
@@ -348,4 +353,15 @@ textarea {
 
 .empresa-alerta {
   font-size: 1.1rem;
+}
+
+@media (min-width: 1520px){
+  .empresa-nome{
+    width: 150px;
+    margin-left: 313px;
+  }
+
+  #file-label{
+    width: 190px;
+  }
 }
