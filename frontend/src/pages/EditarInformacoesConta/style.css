@@ -1,0 +1,35 @@
+.btn-editar-info {
+  width: 100%;
+  padding: 16px;
+  background: #f39c12;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 22px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.btn-editar-info:hover {
+  background: #d68910;
+  transform: translateY(-2px);
+}
+
+.btn-voltar {
+  width: 100%;
+  padding: 16px;
+  background: #777;
+  color: white;
+  border: none;
+  border-radius: 22px;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  background: #555;
+}

@@ -1,0 +1,125 @@
+/* src/pages/Doar/DoarPet.css */
+.doar-pet-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ff9a9e 0%, #fad0c4 100%);
+  padding: 100px 20px 80px;
+  color: #333;
+}
+
+.doar-pet-container h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  color: #e74c3c;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  color: #555;
+  font-weight: 500;
+}
+
+.doar-pet-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.foto-preview {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 3px dashed #e74c3c;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff5f5;
+  cursor: pointer;
+}
+
+.foto-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.foto-preview input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.doar-pet-form input,
+.doar-pet-form select,
+.doar-pet-form textarea {
+  padding: 16px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: border 0.3s;
+}
+
+.doar-pet-form input:focus,
+.doar-pet-form select:focus,
+.doar-pet-form textarea:focus {
+  outline: none;
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+.doar-pet-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn-doar-pet {
+  background: linear-gradient(to right, #e74c3c, #c0392b);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 18px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+
+.btn-doar-pet:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(231, 76, 60, 0.4);
+}
+
+.btn-doar-pet:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .doar-pet-container h1 { font-size: 1.8rem; }
+  .doar-pet-form { padding: 25px 20px; }
+  .foto-preview { height: 250px; }
+}

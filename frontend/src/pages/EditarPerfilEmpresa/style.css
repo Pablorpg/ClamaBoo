@@ -1,0 +1,258 @@
+
+.editar-perfil-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.perfil-esquerdo {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo-box {
+  width: 220px;
+  height: 220px;
+  background: #f8f8f8;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.company-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-label {
+  cursor: pointer;
+}
+
+.file-label input {
+  display: none;
+}
+
+.file-label {
+  background: #ff9b3c;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.file-label:hover span {
+  background: #e68933;
+  transform: translateY(-2px);
+  border-radius: 5px;
+}
+
+.info-group {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.info-group strong {
+  color: #D35400;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.acoes-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.btn-editar,
+.btn-salvar,
+.btn-cancelar {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-editar,
+.btn-salvar {
+  background: #ff8a2c;
+  color: white;
+}
+
+.btn-editar:hover,
+.btn-salvar:hover {
+  background: #e67e22;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 138, 44, 0.3);
+}
+
+.btn-cancelar {
+  background: transparent;
+  color: #666;
+  border: 2px solid #ddd;
+}
+
+.btn-cancelar:hover {
+  background: #f0f0f0;
+}
+
+.perfil-direito {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.company-title h2 {
+  font-size: 2.4rem;
+  color: #527478;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.input-nome-empresa {
+  font-size: 2.2rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.info-section h3 {
+  color: #121111;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.info-section p {
+  background: #f9f9f9;
+  padding: 14px;
+  border-radius: 12px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.info-section input,
+.info-section textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.info-section input:focus,
+.info-section textarea:focus {
+  border-color: #ff8a2c;
+  outline: none;
+}
+
+.categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  padding: 10px 18px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.chip.selected {
+  background: #ff8a2c;
+  color: white;
+}
+
+.cert-editor .cert-input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cert-editor input {
+  flex: 1;
+}
+
+.cert-editor button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #27ae60;
+  color: white;
+  padding: 0 20px;
+}
+
+.cert-editor button:hover {
+  background: #155e33;
+}
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fff9;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border-left: 4px solid #27ae60;
+}
+
+.cert-item button {
+  background: #e74c3c;
+  color: white;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+}
+
+.empty-cert {
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.certificados-lista {
+  list-style: none;
+  padding-left: 0;
+}
+
+.certificados-lista li {
+  background: #f0f8ff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border-left: 4px solid #3498db;
+}

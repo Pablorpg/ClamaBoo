@@ -1,0 +1,169 @@
+.doar-wrapper {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+
+.doar-card {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 45px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  margin: 0 20px;
+}
+
+.doar-title {
+  color: #2c3e50;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.empresa-foto {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 25px auto;
+  display: block;
+  border: 5px solid #e0e0e0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.qrcode-placeholder {
+  background: #f0f0f0;
+  height: 220px;
+  margin: 35px 0;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #666;
+  font-weight: 500;
+  border: 3px dashed #ccc;
+}
+
+.pix-key {
+  font-size: 1.25rem;
+  margin: 25px 0;
+  padding: 15px;
+  background: #f8fff9;
+  border-radius: 12px;
+  border-left: 5px solid #27ae60;
+}
+
+.simulador-section {
+  margin-top: 40px;
+  padding-top: 35px;
+  border-top: 3px dashed #ddd;
+}
+
+.simulador-title {
+  color: #27ae60;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.doar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.input-valor,
+.input-nome {
+  padding: 16px 18px;
+  font-size: 1.15rem;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-valor:focus,
+.input-nome:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 4-Makingpx rgba(39, 174, 96, 0.2);
+}
+
+.btn-doar {
+  background: #27ae60;
+  color: white;
+  padding: 18px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-doar:hover {
+  background: #219653;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+}
+
+.info-real {
+  margin-top: 35px;
+  color: #777;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.voltar-container {
+  margin-top: 40px;
+}
+
+.btn-voltar-simples {
+  color: #e74c3c;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.btn-voltar-simples:hover {
+  color: #c0392b;
+  text-decoration: underline;
+}
+
+.error-container {
+  padding-top: 200px;
+  text-align: center;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.error-container h1 {
+  color: #e74c3c;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.btn-voltar {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}

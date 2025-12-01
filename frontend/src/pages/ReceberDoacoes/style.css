@@ -1,0 +1,161 @@
+.pagina-receber-doacoes {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 120px 20px 100px;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.container-doacoes {
+  max-width: 720px;
+  width: 100%;
+  background: white;
+  border-radius: 30px;
+  padding: 50px 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.titulo-principal {
+  font-size: 3rem;
+  color: #27ae60;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.subtitulo {
+  font-size: 1.3rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.nome-empresa {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin: 30px 0 40px;
+  font-weight: 600;
+}
+
+.container-qrcode {
+  width: 320px;
+  height: 320px;
+  margin: 40px auto;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 5px dashed #27ae60;
+  background: #f8fff8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcode-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qrcode-vazio {
+  color: #777;
+  font-size: 1.4rem;
+}
+
+.qrcode-vazio small {
+  display: block;
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #999;
+}
+
+.secao-pix,
+.secao-link {
+  margin: 50px 0;
+}
+
+.secao-pix h3,
+.secao-link h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.caixa-texto {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 16px 0;
+  font-size: 1.4rem;
+  word-break: break-all;
+  border: 2px solid #e0e0e0;
+}
+
+.caixa-link {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+}
+
+.chave-pix {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.link-doacao {
+  color: #2980b9;
+  font-weight: 500;
+}
+
+.botao-copiar {
+  padding: 14px 36px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.botao-verde {
+  background: #27ae60;
+  color: white;
+}
+
+.botao-verde:hover {
+  background: #219a52;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+}
+
+.botao-azul {
+  background: #2980b9;
+  color: white;
+}
+
+.botao-azul:hover {
+  background: #1f6391;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(41, 128, 185, 0.3);
+}
+
+.mensagem-final {
+  margin-top: 50px;
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+.mensagem-final strong {
+  color: #27ae60;
+  font-size: 1.3rem;
+}
+
+.carregando-empresa {
+  padding: 150px 20px;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #777;
+}

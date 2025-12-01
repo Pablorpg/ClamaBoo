@@ -1,3 +1,7 @@
+body, html {
+  overflow-x: hidden;
+}
+
 .home-body {
   width: 100vw;
   min-height: 1080px;
@@ -102,6 +106,7 @@
 }
 
 .home-faq {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -143,9 +148,11 @@
 }
 
 .home-recado {
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 50px 20px;
+  padding-bottom: 30px;
   gap: 20px;
   background: #FFF2E0;
   flex-wrap: wrap;
@@ -161,6 +168,10 @@
   pointer-events: auto;
 }
 
+.recado-text{
+  margin-left: 50px;
+}
+
 .recado-text h3 {
   margin-bottom: 10px;
   font-size: 22px;
@@ -168,6 +179,7 @@
 
 .recado-text p {
   font-size: 16px;
+  width: 400px;
 }
 
 .modal-bg {
@@ -370,12 +382,20 @@
   background-color: #BBD6F8;
   padding-bottom: 70px;
   border-radius: 50px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .imgcat {
   position: relative;
   top: 87px;
   right: 15px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .txtDenuncias {
@@ -389,11 +409,19 @@
   background-color: #FFB6B8;
   padding-bottom: 60px;
   border-radius: 50px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .imgrabbit {
   position: relative;
   top: 85px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .txtDuvidas {
@@ -407,7 +435,7 @@
   width: 350px !important;
   position: relative;
   top: 20px;
-  left: 130px;
+  left: 70px;
   z-index: 1;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -418,7 +446,7 @@
 .element1 {
   width: 450px;
   position: absolute;
-  left: 980px;
+  left: 780px;
   top: 600px;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -451,7 +479,7 @@
   width: 400px;
   position: absolute;
   left: 0;
-  top: 1168px;
+  top: 1157px;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   user-select: none;
@@ -461,7 +489,7 @@
 .element5 {
   width: 150px;
   position: absolute;
-  left: 230px;
+  left: 300px;
   top: 1175px;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -471,6 +499,7 @@
 
 .imgrecado {
   z-index: 1;
+  margin-left: 100px;
 }
 
 .home-recado {
@@ -587,7 +616,7 @@
 
   .element5 {
     position: absolute;
-    left: 450px;
+    left: 500px;
     top: 1253px;
   }
 

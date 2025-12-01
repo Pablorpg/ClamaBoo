@@ -1,0 +1,71 @@
+.register-donation-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFF6E1 0%, #FFE8B3 100%);
+  padding-top: 190px;
+  padding-bottom: 100px;
+}
+
+.register-card {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.register-card h1 {
+  color: #D35400;
+  margin-bottom: 20px;
+}
+
+.register-card p {
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.input-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #5D4037;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 15px;
+  font-size: 1.1rem;
+}
+
+.register-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.register-btn:hover {
+  background: #219653;
+}
+
+.tip {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  font-size: 1.1rem;
+}

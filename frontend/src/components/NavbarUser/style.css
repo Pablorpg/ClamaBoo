@@ -1,0 +1,59 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #FFF6E1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0px;
+  padding-right: 300px;
+}
+
+/* Container interno */
+.navbar-container {
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  justify-content: space-between; /* LOGO ESQUERDA | MENU DIREITA */
+  align-items: center;
+}
+
+/* Faz o menu grudar totalmente na direita */
+.navbar-menu {
+  margin-left: auto;
+}
+
+.navbar-menu ul {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar-menu ul li {
+  font-size: 16px;
+  padding: 6px 14px;
+  font-weight: 500;
+  color: #5D4037;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.navbar-menu ul li:hover {
+  background-color: #FFE0A3;
+  transform: translateY(-2px);
+}
+
+.navbar-menu ul li.active {
+  background: #FFE0A3;
+  font-weight: 700;
+  color: #D35400;
+  box-shadow: 0 4px 10px rgba(255, 190, 100, 0.4);
+}

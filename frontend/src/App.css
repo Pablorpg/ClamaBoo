@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: none;
+}
+
+.container-nao-encontrado {
+    padding: 150px 20px;
+    text-align: center;
+    font-size: 3rem;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.texto-nao-encontrado {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #7f8c8d;
+}
+
+.link-nao-encontrado {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+.link-nao-encontrado:hover {
+    text-decoration: underline;
+}

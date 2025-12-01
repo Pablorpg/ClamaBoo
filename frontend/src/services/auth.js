@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = import.meta.env.VITE_API_URL;
 
 export async function register(data) {
   const payload = {
@@ -7,7 +7,7 @@ export async function register(data) {
     password: data.password
   };
 
-  const res = await fetch(`${API}/api/auth/register`, {
+  const res = await fetch(`${API}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
@@ -17,44 +17,51 @@ export async function register(data) {
 }
 
 export async function login(body) {
-  const res = await fetch(`${API}/api/auth/login`, {
+  const res = await fetch(`${API}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     body: JSON.stringify(body),
   });
 
-  return res.json();
+  const data = await res.json();
+  if (!res.ok) throw data;
+
+  return data;
 }
 
+
 export async function registerCompany(body) {
-  const res = await fetch(`${API}/api/company/register`, {
+  const res = await fetch(`${API}/company/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
 
   const data = await res.json();
-
   if (!res.ok) throw new Error(data.message);
 
   return data;
 }
 
 export async function loginCompany(body) {
-  const res = await fetch(`${API}/api/company/login`, {
+  const res = await fetch(`${API}/company/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
 
-  return res.json();
+  const data = await res.json();
+  if (!res.ok) throw data;
+
+  return data;
 }
+
 
 export async function forgot(email) {
   const payload = { email: email?.trim() };
 
-  const res = await fetch(`${API}/api/auth/forgot-password`, {
+  const res = await fetch(`${API}/auth/forgot-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
@@ -70,7 +77,7 @@ export async function reset({ email, code, newPassword }) {
     newPassword
   };
 
-  const res = await fetch(`${API}/api/auth/reset-password`, {
+  const res = await fetch(`${API}/auth/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)

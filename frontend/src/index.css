@@ -1,0 +1,33 @@
+
+html.tema-clamaboo {
+  --bg: #FFEED9;
+  --card: white;
+  --text: #000000;
+  --accent: #260f00;
+}
+
+html.tema-escuro {
+  --bg: #2d2d2d;
+  --card: #000000;
+  --text: #3e3e3e;
+  --accent: #353535;
+}
+
+body,
+.config-pagina,
+.pagina-denuncia {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.config-card,
+.card-denuncia {
+  background: var(--card);
+}
+
+h1,
+h2,
+h3,
+.nome-empresa {
+  color: var(--accent);
+}

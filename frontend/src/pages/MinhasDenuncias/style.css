@@ -1,0 +1,181 @@
+.container-denuncias {
+  min-height: 100vh;
+  background: #FFF2E0;
+  padding: 120px 20px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.titulo-pagina {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #D35400;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.mensagem-vazia {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #777;
+  margin-top: 60px;
+  font-style: italic;
+}
+
+.lista-denuncias {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-denuncia {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.card-denuncia:hover {
+  transform: translateY(-5px);
+}
+
+.conteudo-denuncia {
+  flex: 1;
+}
+
+.nome-empresa {
+  display: block;
+  font-size: 1.4rem;
+  color: #D35400;
+  margin-bottom: 8px;
+}
+
+.mensagem-denuncia {
+  margin: 10px 0;
+  color: #444;
+  line-height: 1.6;
+}
+
+.data-denuncia {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.status-denuncia {
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-nova {
+  background: #e74c3c;
+}
+
+.status-analise {
+  background: #f39c12;
+}
+
+.status-resolvida {
+  background: #27ae60;
+}
+
+.acoes-denuncia {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.botao-excluir-denuncia {
+  background: none;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-excluir-denuncia:hover {
+  background: #e74c3c;
+  color: white;
+  transform: scale(1.05);
+}
+
+.modal-excluir-denuncia-fundo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-excluir-denuncia {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: modalAppear 0.4s ease;
+}
+
+@keyframes modalAppear {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.botoes-modal {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-cancelar {
+  padding: 12px 30px;
+  background: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-confirmar-exclusao {
+  padding: 12px 30px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-confirmar-exclusao:hover {
+  background: #c0392b;
+}

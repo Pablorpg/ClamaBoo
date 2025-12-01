@@ -1,0 +1,125 @@
+// src/pages/DoarParaEmpresa.jsx
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import NavbarUser from "../../components/NavbarUser";
+import { toast } from "react-toastify";
+import { salvarDoacao } from "../../utils/storage";
+import "./style.css";
+
+export default function DoarParaEmpresa() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Empresa pode vir por state (quando usuário clicou em "Doar" em uma lista)
+  const empresaFromState = location.state?.empresa;
+
+  // Empresa previamente selecionada para DOAÇÃO (modo B): empresaAtivaParaDoacao
+  const empresaFromStorageRaw = localStorage.getItem("empresaAtivaParaDoacao");
+  const empresaFromStorage = empresaFromStorageRaw ? JSON.parse(empresaFromStorageRaw) : null;
+
+  // prefer state (ação imediata), senão usa a seleção de doação salva
+  const empresa = empresaFromState?.id ? empresaFromState : empresaFromStorage;
+
+  const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+  const userEmail = userData.email || "anonimo@clamaboo.com";
+
+  const [valor, setValor] = useState("");
+  const [nome, setNome] = useState("");
+
+  // Se veio por state, salve como seleção de DOAÇÃO (não toca seleção de denúncia)
+  useEffect(() => {
+    if (empresaFromState?.id) {
+      localStorage.setItem("empresaAtivaParaDoacao", JSON.stringify(empresaFromState));
+    }
+  }, [empresaFromState]);
+
+  if (!empresa?.id) {
+    return (
+      <>
+        <NavbarUser />
+        <div className="error-container">
+          <h1>Nenhuma empresa selecionada</h1>
+          <button onClick={() => navigate("/minhas-empresas")} className="btn-voltar">
+            Escolher empresa
+          </button>
+        </div>
+      </>
+    );
+  }
+
+  const simularDoacao = (e) => {
+    e.preventDefault();
+    if (!valor || Number(valor) <= 0) return toast.error("Valor inválido!");
+
+    const novaDoacao = {
+      id: Date.now(),
+      valor: parseFloat(Number(valor).toFixed(2)),
+      data: new Date().toISOString(),
+      nome: nome.trim() || "Anônimo",
+      anonimo: !nome.trim(),
+      // já passamos explicitamente a empresa da doação (garante isolamento)
+      empresaId: String(empresa.id),
+      empresaNome: empresa.companyName,
+      userEmail,
+      tipo: "dinheiro",
+    };
+
+    salvarDoacao(novaDoacao);
+    toast.success(`Doação de R$ ${valor} registrada com sucesso!`);
+    setValor("");
+    setNome("");
+  };
+
+  return (
+    <>
+      <NavbarUser />
+      <div className="doar-wrapper">
+        <div className="doar-card">
+          <h1 className="doar-title">Doar para {empresa.companyName}</h1>
+
+          <img
+            src={empresa.profileImage ? `http://localhost:5000${empresa.profileImage}` : "/logo192.png"}
+            alt={empresa.companyName}
+            className="empresa-foto"
+            onError={(e) => (e.target.src = "/logo192.png")}
+          />
+
+          <div className="qrcode-placeholder">QR Code PIX</div>
+
+          <p className="pix-key">
+            <strong>Chave PIX:</strong> {empresa.pixKey || "Não informada"}
+          </p>
+
+          <form onSubmit={simularDoacao} className="doar-form">
+            <input
+              type="number"
+              step="0.01"
+              placeholder="Valor da doação (ex: 50.00)"
+              value={valor}
+              onChange={(e) => setValor(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Seu nome (opcional - deixe em branco para anônimo)"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
+            <button type="submit" className="btn-doar">
+              Doar Agora
+            </button>
+          </form>
+
+          <p className="info-real">
+            No mundo real você faria o PIX pelo seu banco.<br />
+            Aqui estamos simulando para o projeto ficar completo!
+          </p>
+
+          <button onClick={() => navigate(-1)} className="btn-voltar-simples">
+            ← Voltar
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}

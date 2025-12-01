@@ -1,0 +1,84 @@
+.container-doacoes {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #FFF6E1, #FFE8B3);
+  padding: 120px 20px 80px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.titulo-pagina {
+  font-size: 2.8rem;
+  color: #D35400;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.lista-doacoes {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-doacao {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.card-doacao:hover {
+  transform: translateY(-5px);
+}
+
+.info-doacao {
+  text-align: left;
+  flex: 1;
+}
+
+.nome-empresa {
+  display: block;
+  font-size: 1.5rem;
+  color: #D35400;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.valor-data {
+  margin: 8px 0;
+  color: #333;
+  font-weight: 500;
+}
+
+.mensagem-personalizada {
+  display: block;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.status-doacao {
+  background: #27ae60;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mensagem-vazia {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  margin-top: 60px;
+  font-style: italic;
+}
+
