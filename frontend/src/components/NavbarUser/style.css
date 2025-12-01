@@ -15,16 +15,14 @@
   padding-right: 300px;
 }
 
-/* Container interno */
 .navbar-container {
   width: 100%;
   max-width: 1500px;
   display: flex;
-  justify-content: space-between; /* LOGO ESQUERDA | MENU DIREITA */
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Faz o menu grudar totalmente na direita */
 .navbar-menu {
   margin-left: auto;
 }
@@ -56,4 +54,22 @@
   font-weight: 700;
   color: #D35400;
   box-shadow: 0 4px 10px rgba(255, 190, 100, 0.4);
+}
+
+@media (min-width: 1520px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar-menu{
+    margin-left: 900px;
+  }
+
+  #mE{
+    width: 200px;
+  }
+
+  #fD{
+    width: 175px;
+  }
 }

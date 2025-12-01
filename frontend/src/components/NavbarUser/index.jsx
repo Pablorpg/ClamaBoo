@@ -51,7 +51,7 @@ export default function NavbarUser() {
           className="logo-company"
           onClick={() => navigate("/Inicio")}
         >
-          <img src={LogoClamaBoo} alt="ClamaBoo" />
+          <img className="logo" src={LogoClamaBoo} alt="ClamaBoo" />
         </div>
 
         <nav className="navbar-menu">
@@ -79,6 +79,7 @@ export default function NavbarUser() {
                 </li>
 
                 <li
+                  id="fD"
                   className={isActive("/denuncia") ? "active" : ""}
                   onClick={() => navigate("/denuncia")}
                 >
@@ -88,6 +89,7 @@ export default function NavbarUser() {
             )}
 
             <li
+              id="mE"
               className={isActive("/minhas-empresas") ? "active" : ""}
               onClick={() => navigate("/minhas-empresas")}
             >
