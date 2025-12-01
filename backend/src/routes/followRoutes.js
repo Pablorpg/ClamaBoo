@@ -1,18 +1,20 @@
 import express from "express";
 import authUser from "../middleware/authUser.js";
-import authCompany from "../middleware/authCompany.js";
 import {
   followCompany,
   unfollowCompany,
-  getFollowers
+  checkFollowing,
+  getFollowersCount,
+  getFollowing
 } from "../controllers/followController.js";
 
 const router = express.Router();
 
-router.post("/follow/:companyId", authUser, followCompany);
+router.get("/following", authUser, getFollowing);
+router.get("/check/:id", authUser, checkFollowing);
+router.get("/count/:id", getFollowersCount);
 
-router.delete("/unfollow/:companyId", authUser, unfollowCompany);
-
-router.get("/followers", authCompany, getFollowers);
+router.post("/:id", authUser, followCompany);
+router.delete("/:id", authUser, unfollowCompany);
 
 export default router;

@@ -9,30 +9,14 @@ const Follow = sequelize.define("Follow", {
     autoIncrement: true,
     primaryKey: true,
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: "id",
-    },
-    onDelete: "CASCADE",
-  },
-  companyId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Company,
-      key: "id",
-    },
-    onDelete: "CASCADE",
-  },
+}, {
+  timestamps: true,
+  indexes: [
+    { unique: true, fields: ["userId", "companyId"] }
+  ]
 });
 
+User.belongsToMany(Company, { through: Follow, foreignKey: "userId", as: "following" });
+Company.belongsToMany(User, { through: Follow, foreignKey: "companyId", as: "followers" });
+
 export default Follow;
-
-
-User.hasMany(Follow, { foreignKey: "userId", onDelete: "CASCADE" });
-Follow.belongsTo(User, { foreignKey: "userId" });
-
-Company.hasMany(Follow, { foreignKey: "companyId", onDelete: "CASCADE" });

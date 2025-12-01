@@ -13,7 +13,8 @@ export const verifyToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).json({ message: "Token inválido" });
 
-    req.user = decoded;
+    req.userId = decoded.id;
+    req.userType = decoded.type;
     next();
   });
 };

@@ -22,6 +22,11 @@ const Company = sequelize.define("Company", {
   },
   phone: {
     type: DataTypes.STRING,
+    allowNull: true,
+  },
+  profileImage: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   categories: {
     type: DataTypes.JSON,
@@ -30,8 +35,28 @@ const Company = sequelize.define("Company", {
   cnpj: {
     type: DataTypes.STRING,
   },
+  about: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  objectives: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  certificates: {
+    type: DataTypes.JSON,
+    defaultValue: [],
+  },
   resetCode: {
     type: DataTypes.STRING,
+    allowNull: true,
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  deletionScheduledAt: {
+    type: DataTypes.DATE,
     allowNull: true,
   },
 });

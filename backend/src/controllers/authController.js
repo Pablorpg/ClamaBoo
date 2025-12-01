@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { sendResetEmail } from "../utils/mailer.js";
 import dotenv from "dotenv";
+import { Op } from "sequelize";
 dotenv.config();
 
 export const register = async (req, res) => {
@@ -27,14 +28,7 @@ export const register = async (req, res) => {
 
     res.status(201).json({ message: "Usuário criado com sucesso!", user });
   } catch (err) {
-    if (err.name === "SequelizeValidationError") {
-      const messages = err.errors.map((e) =>
-        e.validatorKey === "isEmail" ? "O e-mail fornecido é inválido." : e.message
-      );
-      return res.status(400).json({ message: messages });
-    }
-
-    res.status(500).json({ message: "Ocorreu um erro ao criar o usuário. " + err.message });
+    res.status(500).json({ message: "Erro ao criar usuário: " + err.message });
   }
 };
 
@@ -108,12 +102,69 @@ export const getUsers = async (req, res) => {
 
 export const getProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id, {
-      attributes: ["id", "username", "email", "createdAt"],
+    const user = await User.findByPk(req.userId, {
+      attributes: ["id", "username", "email", "createdAt"]
     });
-    if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
-    res.json(user);
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    res.json({ user });
   } catch (err) {
-    res.status(500).json({ message: "Erro ao buscar perfil: " + err.message });
+    res.status(500).json({ message: "Erro ao carregar perfil" });
+  }
+};
+
+export const updateProfileUser = async (req, res) => {
+  try {
+    const { username, email, senhaAtual, novaSenha } = req.body;
+
+    const user = await User.findByPk(req.userId);
+
+    if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
+
+    if (username) {
+      user.username = username.trim();
+    }
+
+    if (email) {
+      const existing = await User.findOne({
+        where: {
+          email: email.toLowerCase().trim(),
+          id: { [Op.ne]: req.userId }
+        }
+      });
+
+      if (existing) {
+        return res.status(400).json({ message: "Este email já está em uso" });
+      }
+
+      user.email = email.toLowerCase().trim();
+    }
+
+    if (senhaAtual && novaSenha) {
+      const valid = await bcrypt.compare(senhaAtual, user.password);
+
+      if (!valid) {
+        return res.status(400).json({ message: "Senha atual incorreta" });
+      }
+
+      user.password = await bcrypt.hash(novaSenha, 10);
+    }
+
+    await user.save();
+
+    res.json({
+      message: "Perfil atualizado com sucesso!",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email
+      }
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao atualizar perfil: " + err.message });
   }
 };

@@ -13,6 +13,4 @@ const sequelize = new Sequelize(
   }
 );
 
-await sequelize.sync();
-
 export default sequelize;
