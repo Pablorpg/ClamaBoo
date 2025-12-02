@@ -60,3 +60,48 @@
   font-size: 0.9rem;
   color: #888;
 }
+
+@media (max-width: 480px) {
+
+  .pets-container {
+    padding: 20px 10px;
+    margin-top: 80px;
+  }
+
+  .titulo-pets {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .nenhum-pet {
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+
+  .pets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .pet-card {
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .pet-foto {
+    height: 180px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .temperamento {
+    font-size: 0.9rem;
+    margin: 6px 0;
+  }
+
+  .data {
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+}

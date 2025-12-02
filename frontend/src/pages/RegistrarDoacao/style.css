@@ -69,3 +69,44 @@
   border-radius: 15px;
   font-size: 1.1rem;
 }
+
+@media (max-width: 480px) {
+
+  .register-donation-page {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+
+  .register-card {
+    width: 90%;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .register-card h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .register-card p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .input-group input {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .register-btn {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+  }
+
+  .tip {
+    font-size: 1rem;
+    padding: 15px;
+    margin-top: 25px;
+  }
+}

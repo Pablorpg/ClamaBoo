@@ -7,6 +7,7 @@ export default function NavbarUser() {
   const navigate = useNavigate();
   const location = useLocation();
   const [podeInteragir, setPodeInteragir] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
@@ -15,11 +16,6 @@ export default function NavbarUser() {
     if (!token) {
       setPodeInteragir(false);
       return;
-    }
-
-    const activeCompanyId = localStorage.getItem("activeCompanyId");
-    if (!activeCompanyId || activeCompanyId === "null") {
-      localStorage.removeItem("activeCompanyId");
     }
 
     fetch("http://localhost:5000/api/follow/following", {
@@ -43,23 +39,27 @@ export default function NavbarUser() {
     return () => window.removeEventListener("followChange", handleFollowChange);
   }, [verificarPermissao]);
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const goTo = (path) => {
+    setMenuOpen(false);
+    navigate(path);
+  };
+
   return (
     <header className="navbar">
       <div className="navbar-container">
-
-        <div
-          className="logo-company"
-          onClick={() => navigate("/Inicio")}
-        >
-          <img className="logo" src={LogoClamaBoo} alt="ClamaBoo" />
+        <div className="logo-company" onClick={() => goTo("/Inicio")}>
+          <img src={LogoClamaBoo} alt="ClamaBoo" />
         </div>
 
-        <nav className="navbar-menu">
-          <ul>
-            <li
-              className={isActive("/Inicio") ? "active" : ""}
-              onClick={() => navigate("/Inicio")}
-            >
+        <div className="menu-toggle" onClick={toggleMenu}>
+          ☰
+        </div>
+
+        <nav>
+          <ul className={menuOpen ? "show" : ""}>
+            <li className={isActive("/Inicio") ? "active" : ""} onClick={() => goTo("/Inicio")}>
               Início
             </li>
 
@@ -67,39 +67,24 @@ export default function NavbarUser() {
               <>
                 <li
                   className={
-                    isActive("/doar") ||
-                      isActive("/doar-pet") ||
-                      isActive("/doar-dinheiro")
-                      ? "active"
-                      : ""
+                    location.pathname.includes("/doar") ? "active" : ""
                   }
-                  onClick={() => navigate("/doar")}
+                  onClick={() => goTo("/doar")}
                 >
                   Doação
                 </li>
 
-                <li
-                  id="fD"
-                  className={isActive("/denuncia") ? "active" : ""}
-                  onClick={() => navigate("/denuncia")}
-                >
+                <li className={isActive("/denuncia") ? "active" : ""} onClick={() => goTo("/denuncia")}>
                   Fazer Denúncia
                 </li>
               </>
             )}
 
-            <li
-              id="mE"
-              className={isActive("/minhas-empresas") ? "active" : ""}
-              onClick={() => navigate("/minhas-empresas")}
-            >
+            <li className={isActive("/minhas-empresas") ? "active" : ""} onClick={() => goTo("/minhas-empresas")}>
               Minhas Empresas
             </li>
 
-            <li
-              className={isActive("/perfil") ? "active" : ""}
-              onClick={() => navigate("/perfil")}
-            >
+            <li className={isActive("/perfil") ? "active" : ""} onClick={() => goTo("/perfil")}>
               Perfil
             </li>
           </ul>
@@ -107,5 +92,4 @@ export default function NavbarUser() {
       </div>
     </header>
   );
-
 }

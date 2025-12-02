@@ -159,3 +159,83 @@
   font-size: 1.6rem;
   color: #777;
 }
+
+@media (max-width: 480px) {
+
+  .pagina-receber-doacoes {
+    padding: 60px 15px 60px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-doacoes {
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .titulo-principal {
+    font-size: 2rem;
+  }
+
+  .subtitulo {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .nome-empresa {
+    font-size: 1.6rem;
+    margin: 20px 0 30px;
+  }
+
+  .container-qrcode {
+    width: 240px;
+    height: 240px;
+    margin: 30px auto;
+    border-radius: 18px;
+  }
+
+  .qrcode-vazio {
+    font-size: 1.2rem;
+  }
+
+  .qrcode-vazio small {
+    font-size: 0.9rem;
+  }
+
+  .secao-pix,
+  .secao-link {
+    margin: 30px 0;
+  }
+
+  .secao-pix h3,
+  .secao-link h3 {
+    font-size: 1.4rem;
+  }
+
+  .caixa-texto {
+    font-size: 1.2rem;
+    padding: 14px;
+  }
+
+  .botao-copiar {
+    padding: 12px 28px;
+    font-size: 1rem;
+    margin: 8px;
+  }
+
+  .mensagem-final {
+    font-size: 1rem;
+    margin-top: 30px;
+  }
+
+  .mensagem-final strong {
+    font-size: 1.1rem;
+  }
+
+  .carregando-empresa {
+    padding: 100px 15px;
+    font-size: 1.4rem;
+  }
+}

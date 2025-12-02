@@ -7,6 +7,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { register, login, forgot, reset, registerCompany, loginCompany } from "../../services/auth";
 
 export default function LoginCadastro() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [isActive, setIsActive] = useState(false);
   const [isCompany, setIsCompany] = useState(false);
 

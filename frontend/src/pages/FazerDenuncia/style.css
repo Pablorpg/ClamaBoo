@@ -11,7 +11,7 @@
   padding: 40px;
   max-width: 900px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .complaint-card h1 {
@@ -55,7 +55,9 @@
   min-width: 250px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 16px;
   border: 2px solid #FFE0A3;
@@ -65,7 +67,9 @@ input, textarea, select {
   transition: 0.3s;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #D35400;
   box-shadow: 0 0 10px rgba(211, 84, 0, 0.2);
@@ -132,11 +136,11 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-container input:checked~.checkmark {
   background: #D35400;
 }
 
-.checkbox-container input:checked ~ .checkmark::after {
+.checkbox-container input:checked~.checkmark::after {
   content: "✓";
   position: absolute;
   color: white;
@@ -159,6 +163,7 @@ input[type="file"] {
   margin-top: 30px;
   transition: 0.3s;
 }
+
 .complaint-container {
   min-height: 100vh;
   padding: 100px 20px 50px;
@@ -172,7 +177,7 @@ input[type="file"] {
   padding: 40px;
   max-width: 900px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .complaint-card h1 {
@@ -216,7 +221,9 @@ input[type="file"] {
   min-width: 250px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 16px;
   border: 2px solid #FFE0A3;
@@ -226,7 +233,9 @@ input, textarea, select {
   transition: 0.3s;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #D35400;
   box-shadow: 0 0 10px rgba(211, 84, 0, 0.2);
@@ -287,11 +296,11 @@ textarea {
   transition: 0.3s;
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-container input:checked~.checkmark {
   background: #D35400;
 }
 
-.checkbox-container input:checked ~ .checkmark::after {
+.checkbox-container input:checked~.checkmark::after {
   content: "✓";
   position: absolute;
   color: white;
@@ -356,13 +365,105 @@ textarea {
   font-size: 1.1rem;
 }
 
-@media (min-width: 1921px){
-  .empresa-nome{
+@media (min-width: 1921px) {
+  .empresa-nome {
     width: 150px;
     margin-left: 313px;
   }
 
-  #file-label{
+  #file-label {
     width: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .complaint-container {
+    padding: 60px 15px 30px;
+  }
+
+  .complaint-card {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .complaint-card h1 {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .section h2 {
+    font-size: 1.2rem;
+    gap: 6px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .row input,
+  .row select,
+  .full-width {
+    min-width: 100%;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .file-upload {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .file-label {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .file-name {
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .termos {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .checkbox-container {
+    font-size: 0.85rem;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 1.2rem;
+  }
+
+  .empresa-ativa,
+  .empresa-inativa {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .empresa-nome {
+    font-size: 1.2rem;
+  }
+
+  .empresa-alerta {
+    font-size: 0.95rem;
   }
 }

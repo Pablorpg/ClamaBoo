@@ -85,3 +85,65 @@
   font-style: italic;
 }
 
+@media (max-width: 480px) {
+
+  .container-doacoes {
+    padding: 80px 15px 50px;
+    margin-top: 60px;
+  }
+
+  .titulo-pagina {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .lista-doacoes {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-doacao {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1rem;
+  }
+
+  .info-doacao {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .nome-empresa {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .valor-data {
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+
+  .mensagem-personalizada {
+    font-size: 0.85rem;
+    margin-top: 8px;
+  }
+
+  .status-doacao {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+
+  .mensagem-vazia {
+    font-size: 1.2rem;
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+}

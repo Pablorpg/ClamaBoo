@@ -1,6 +1,6 @@
 import app from "./app.js";
 import sequelize from "./config/database.js";
-import "./jobs/deleteExpiredCompanies.js";
+import { startDeleteExpiredCompanies } from "./jobs/deleteExpiredCompanies.js";
 
 const PORT = 5000;
 
@@ -8,6 +8,8 @@ const startServer = async () => {
   try {
     await sequelize.sync({ force: true });
     console.log("Banco de dados 'clamaboo' recriado");
+
+    startDeleteExpiredCompanies();
 
     app.listen(PORT, () => {
       console.log(`Servidor rodando em http://localhost:${PORT}`);

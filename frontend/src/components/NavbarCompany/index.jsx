@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LogoClamaBoo from "../../assets/ClamaBooLogo.png";
 import "./style.css";
@@ -6,6 +6,8 @@ import "./style.css";
 export default function NavbarCompany() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const companyData = JSON.parse(localStorage.getItem("companyData") || "{}");
@@ -17,50 +19,64 @@ export default function NavbarCompany() {
 
   const isActive = (path) => location.pathname === path;
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const goTo = (path) => {
+    navigate(path);
+    setMenuOpen(false);
+  };
+
   return (
     <header className="navbar-company">
       <div className="navbar-company-container">
+
         <div
           className="logo-company"
-          onClick={() => navigate("/empresa/dashboard")}
+          onClick={() => goTo("/empresa/dashboard")}
           style={{ cursor: "pointer" }}
         >
           <img src={LogoClamaBoo} alt="ClamaBoo" />
         </div>
 
+        <div className="menu-toggle" onClick={toggleMenu}>
+          ☰
+        </div>
+
         <nav>
-          <ul>
+          <ul className={menuOpen ? "show" : ""}>
             <li
               className={isActive("/empresa/dashboard") ? "active" : ""}
-              onClick={() => navigate("/empresa/dashboard")}
+              onClick={() => goTo("/empresa/dashboard")}
             >
               Dashboard
             </li>
 
             <li
               className={isActive("/empresa/doacoes") ? "active" : ""}
-              onClick={() => navigate("/empresa/doacoes")}
+              onClick={() => goTo("/empresa/doacoes")}
             >
               Doações
             </li>
 
             <li
               className={isActive("/empresa/pets") ? "active" : ""}
-              onClick={() => navigate("/empresa/pets")}
+              onClick={() => goTo("/empresa/pets")}
             >
               Adoção de Pets
             </li>
 
             <li
               className={isActive("/empresa/denuncias") ? "active" : ""}
-              onClick={() => navigate("/empresa/denuncias")}
+              onClick={() => goTo("/empresa/denuncias")}
             >
               Denúncias
             </li>
 
             <li
               className={isActive("/empresa/editar-perfil") ? "active" : ""}
-              onClick={() => navigate("/empresa/editar-perfil")}
+              onClick={() => goTo("/empresa/editar-perfil")}
             >
               Perfil
             </li>

@@ -121,3 +121,49 @@
   50% { transform: scale(1.07); }
   100% { transform: scale(1); }
 }
+
+@media (max-width: 480px) {
+
+  .doar-container {
+    padding: 60px 15px 40px;
+  }
+
+  .doar-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .doar-options {
+    flex-direction: column;
+    margin-left: 0;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .doar-card {
+    padding: 30px 20px;
+    border-radius: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .emoji-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    margin-left: 0;
+  }
+
+  .doar-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .doar-card p {
+    font-size: 1rem;
+  }
+
+  .doar-card.pet {
+    border: 2px solid #5d9b50;
+  }
+}

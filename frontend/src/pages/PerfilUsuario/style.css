@@ -147,8 +147,74 @@
   margin-bottom: 0;
 }
 
-@media(min-width: 1520px) {
+@media(min-width: 1921px) {
   .perfil-container {
     margin-top: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .perfil-container {
+    padding: 20px 10px;
+    margin-top: 20px;
+  }
+
+  .perfil-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .perfil-info {
+    width: 100%;
+    padding: 25px 20px;
+    text-align: center;
+  }
+
+  .perfil-avatar {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 20px;
+    border-width: 5px;
+  }
+
+  .perfil-nome {
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    margin: 12px 0 20px;
+  }
+
+  .perfil-dados {
+    margin: 20px 0;
+  }
+
+  .dado strong {
+    font-size: 1rem;
+  }
+
+  .dado p {
+    font-size: 1.1rem;
+  }
+
+  .btn-editar-perfil {
+    padding: 14px 25px;
+    font-size: 1.1rem;
+  }
+
+  .perfil-menu {
+    width: 100%;
+    padding: 20px 15px;
+  }
+
+  .menu-item {
+    font-size: 1.1rem;
+    padding: 14px 16px;
+  }
+
+  .avatar-placeholder span {
+    font-size: 70px;
+    width: 70px;
+    height: 110px;
   }
 }

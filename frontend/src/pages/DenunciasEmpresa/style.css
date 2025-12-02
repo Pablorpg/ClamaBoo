@@ -167,3 +167,97 @@ span{
   background: #219653;
   transform: translateY(-2px);
 }
+
+@media (max-width: 480px) {
+
+  .denuncias-wrapper {
+    padding: 20px 10px;
+    margin-top: 60px;
+    border-radius: 8px;
+  }
+
+  .denuncias-container {
+    padding: 0 10px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .loading-container {
+    padding: 60px 10px;
+    font-size: 1rem;
+  }
+
+  .empty-state {
+    padding: 40px 20px;
+    border-radius: 16px;
+  }
+
+  .empty-state h2 {
+    font-size: 1.5rem;
+  }
+
+  .denuncias-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .denuncia-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .denuncia-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .denuncia-title {
+    font-size: 1.2rem;
+  }
+
+  span {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .denuncia-meta {
+    font-size: 0.95rem;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .status-badge {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .denuncia-content {
+    font-size: 1rem;
+    padding: 12px;
+    margin: 10px 0;
+  }
+
+  .foto-box {
+    width: 100%;
+    height: 150px;
+  }
+
+  .denuncia-actions {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .btn-analise,
+  .btn-resolvido {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+    border-radius: 16px;
+    margin-bottom: 10px;
+  }
+}

@@ -95,3 +95,54 @@
 .card-resolvidas .card-subtitle {
   color: #27ae60;
 }
+
+@media (max-width: 480px) {
+
+  .dashboard-wrapper {
+    padding-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 60px;
+    border-radius: 8px;
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .stat-card {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .stat-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .big-number {
+    font-size: 2.8rem;
+    margin: 15px 0;
+  }
+
+  .card-subtitle {
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+
+  .card-recebido .big-number,
+  .card-recebido .card-subtitle,
+  .card-novas .big-number,
+  .card-analise .big-number,
+  .card-resolvidas .big-number,
+  .card-resolvidas .card-subtitle {
+    font-size: inherit;
+  }
+}

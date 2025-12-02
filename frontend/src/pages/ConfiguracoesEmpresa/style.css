@@ -180,3 +180,97 @@
   from { transform: translateY(50px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+@media (max-width: 480px) {
+
+  .config-pagina {
+    padding: 80px 15px 60px;
+  }
+
+  .config-card {
+    padding: 30px 20px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
+
+  .config-card h1 {
+    font-size: 2.2rem;
+  }
+
+  .sub {
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+  }
+
+  .secao {
+    margin: 35px 0;
+  }
+
+  .secao h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .botoes-tema {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .botoes-tema button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .txt-aviso {
+    margin-top: 5px;
+  }
+
+  .msg-breve {
+    font-size: 1rem;
+  }
+
+  .excluir-secao {
+    margin-top: 50px;
+  }
+
+  .botao-excluir {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .creditos {
+    margin-top: 50px;
+    font-size: 0.95rem;
+  }
+
+  .modal-excluir {
+    padding: 30px 20px;
+    border-radius: 24px;
+    max-width: 90%;
+  }
+
+  .modal-excluir h2 {
+    font-size: 1.7rem;
+  }
+
+  .modal-excluir p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .botoes-modal {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .botao-cancelar,
+  .botao-confirmar {
+    width: 100%;
+    padding: 14px 20px;
+    min-width: unset;
+    font-size: 1rem;
+  }
+
+}

@@ -65,3 +65,37 @@
   color: #D35400;
   box-shadow: 0 4px 10px rgba(255, 190, 100, 0.4);
 }
+.menu-toggle {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #5D4037;
+}
+
+@media (max-width: 480px) {
+  .logo-company{
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: 200px;
+  }
+
+  .navbar-company nav ul {
+    display: none;
+  }
+
+  .navbar-company nav ul.show {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #FFF6E1;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+}

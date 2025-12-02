@@ -128,3 +128,85 @@
   font-size: 1.1rem;
   font-weight: 500;
 }
+
+@media (max-width: 480px) {
+
+  .doacoes-wrapper {
+    padding: 20px 10px;
+    margin-top: 60px;
+    border-radius: 8px;
+  }
+
+  .doacoes-container {
+    padding: 0 10px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .loading-container {
+    padding: 60px 10px;
+    font-size: 1rem;
+  }
+
+  .total-card {
+    padding: 25px 15px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+  }
+
+  .total-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .total-value {
+    font-size: 2.8rem;
+  }
+
+  .total-info {
+    font-size: 1rem;
+  }
+
+  .doacoes-list {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .list-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .empty-state {
+    font-size: 1rem;
+    padding: 40px 10px;
+  }
+
+  .donations-grid {
+    gap: 12px;
+  }
+
+  .donation-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .donation-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .donation-value {
+    font-size: 1.8rem;
+  }
+
+  .donor-name,
+  .donation-date {
+    font-size: 0.95rem;
+  }
+}

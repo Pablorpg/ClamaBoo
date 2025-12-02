@@ -167,3 +167,94 @@
   border-radius: 50px;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+
+  .doar-wrapper {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-top: 60px;
+    border-radius: 10px;
+  }
+
+  .doar-card {
+    padding: 25px 20px;
+    margin: 0 10px;
+  }
+
+  .doar-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .empresa-foto {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+  }
+
+  .qrcode-placeholder {
+    height: 180px;
+    font-size: 1rem;
+    margin: 25px 0;
+  }
+
+  .pix-key {
+    font-size: 1rem;
+    padding: 12px;
+    margin: 20px 0;
+  }
+
+  .simulador-section {
+    margin-top: 30px;
+    padding-top: 25px;
+  }
+
+  .simulador-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .doar-form {
+    gap: 12px;
+  }
+
+  .input-valor,
+  .input-nome {
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .btn-doar {
+    font-size: 1.2rem;
+    padding: 14px;
+    border-radius: 40px;
+  }
+
+  .info-real {
+    font-size: 0.95rem;
+    padding: 15px;
+  }
+
+  .voltar-container {
+    margin-top: 25px;
+  }
+
+  .btn-voltar-simples {
+    font-size: 1rem;
+  }
+
+  .error-container {
+    padding-top: 120px;
+  }
+
+  .error-container h1 {
+    font-size: 2rem;
+  }
+
+  .btn-voltar {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+
+}

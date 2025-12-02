@@ -133,3 +133,50 @@
     height: 250px;
   }
 }
+
+@media (max-width: 480px) {
+
+  .doar-pet-container {
+    padding: 60px 10px 40px;
+  }
+
+  .doar-pet-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .doar-pet-form {
+    padding: 20px 15px;
+    gap: 15px;
+  }
+
+  .foto-preview {
+    height: 200px;
+  }
+
+  .foto-preview .placeholder {
+    font-size: 1rem;
+  }
+
+  .doar-pet-form input,
+  .doar-pet-form select,
+  .doar-pet-form textarea {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .doar-pet-form textarea {
+    min-height: 100px;
+  }
+
+  .btn-doar-pet {
+    font-size: 1.2rem;
+    padding: 14px;
+    border-radius: 12px;
+  }
+}

@@ -103,3 +103,50 @@
   border-color: #95a5a6;
   color: #2d3436;
 }
+
+@media (max-width: 480px) {
+
+  .desativada-container {
+    padding: 15px;
+  }
+
+  .desativada-card {
+    padding: 30px 20px;
+    border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .desativada-card h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+
+  .desativada-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .timer {
+    font-size: 2.2rem;
+    margin: 20px 0;
+    letter-spacing: 2px;
+  }
+
+  .botoes {
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .btn-cancelar {
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+
+  .btn-sair {
+    padding: 12px;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+}

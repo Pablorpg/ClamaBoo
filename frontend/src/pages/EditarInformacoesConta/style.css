@@ -33,3 +33,29 @@
 .btn-voltar:hover {
   background: #555;
 }
+
+@media (max-width: 480px) {
+
+  .btn-editar-info {
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 18px;
+    margin-bottom: 16px;
+  }
+
+  .btn-editar-info:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-voltar {
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 18px;
+    margin-top: 10px;
+  }
+
+  .btn-voltar:hover {
+    transform: translateY(-1px);
+  }
+
+}

@@ -182,3 +182,94 @@
 .btn-confirmar-exclusao:hover {
   background: #c0392b;
 }
+
+@media (max-width: 480px) {
+
+  .container-denuncias {
+    padding: 30px 15px 50px;
+    margin-top: 60px;
+    border-radius: 10px;
+  }
+
+  .titulo-pagina {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .mensagem-vazia {
+    font-size: 1.2rem;
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+
+  .lista-denuncias {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-denuncia {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .conteudo-denuncia {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .nome-empresa {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .mensagem-denuncia {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .data-denuncia {
+    font-size: 0.8rem;
+  }
+
+  .status-denuncia {
+    padding: 8px 16px;
+    width: auto;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .acoes-denuncia {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .botao-excluir-denuncia {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+
+  .modal-excluir-denuncia {
+    padding: 20px;
+    max-width: 90%;
+    border-radius: 15px;
+  }
+
+  .botoes-modal {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-cancelar,
+  .btn-confirmar-exclusao {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 0.9rem;
+  }
+}

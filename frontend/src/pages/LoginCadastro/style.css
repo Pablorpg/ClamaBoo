@@ -514,6 +514,11 @@ body {
   animation: fadeIn 0.3s;
 }
 
+.hidden {
+  display: none !important;
+}
+
+
 .reset-box input {
   padding: 10px;
   border-radius: 5px;
@@ -553,5 +558,148 @@ body {
   100% {
     opacity: 0;
     transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@media (max-width: 480px) {
+
+  body {
+    align-items: flex-start;
+    padding: 20px 0;
+    background-size: cover;
+  }
+
+  .container {
+    width: 90%;
+    height: auto;
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .form-box {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    right: 0 !important;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .form-box.register {
+    visibility: visible !important;
+    margin-top: 25px;
+  }
+
+  .input-box input,
+  #select {
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    border: 1.5px solid #ccc;
+  }
+
+  .input-box input:focus,
+  #select:focus {
+    border-color: #FB9E47;
+    box-shadow: 0 0 8px rgba(251, 158, 71, 0.2);
+  }
+
+  .btn,
+  .btn-forgot {
+    font-size: 15px;
+    height: 45px;
+    border-radius: 12px;
+  }
+
+  .btn:hover {
+    background-color: #d28b3c;
+  }
+
+  .message {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+
+  .reset-modal,
+  .reset-box {
+    width: 90%;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .reset-modal input,
+  .reset-box input {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1.5px solid #ccc;
+  }
+
+  #btnUser,
+  #btnCompany {
+    width: 48%;
+    margin: 5px 1%;
+    font-size: 13px;
+    padding: 9px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    color: #FB9E47;
+  }
+
+  p {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #555;
+  }
+
+  .toggle-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .toggle-panel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+  }
+
+  .toggle-panel .btn {
+    width: 48%;
+    margin: 0 1%;
+  }
+
+  .toggle-bg {
+    display: none !important;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .register-btn{
+    width: 100px;
   }
 }
