@@ -35,9 +35,6 @@ export const authCompany = (req, res, next) => {
   }
 };
 
-/* ============================
-   📝 REGISTRO
-============================ */
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -64,9 +61,6 @@ export const register = async (req, res) => {
   }
 };
 
-/* ============================
-   🔑 LOGIN
-============================ */
 export const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
@@ -90,9 +84,6 @@ export const login = async (req, res) => {
   });
 };
 
-/* ============================
-   📧 ESQUECI MINHA SENHA
-============================ */
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -111,9 +102,6 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-/* ============================
-   🔄 REDEFINIR SENHA
-============================ */
 export const resetPassword = async (req, res) => {
   try {
     const { email, code, newPassword } = req.body;
@@ -132,9 +120,6 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-/* ============================
-   👥 LISTAR USUÁRIOS
-============================ */
 export const getUsers = async (req, res) => {
   try {
     const users = await User.findAll({
@@ -146,9 +131,6 @@ export const getUsers = async (req, res) => {
   }
 };
 
-/* ============================
-   👤 PERFIL DO USUÁRIO
-============================ */
 export const getProfile = async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
@@ -165,9 +147,6 @@ export const getProfile = async (req, res) => {
   }
 };
 
-/* ============================
-   ✏️ ATUALIZAR PERFIL
-============================ */
 export const updateProfileUser = async (req, res) => {
   try {
     const { username, email, senhaAtual, novaSenha } = req.body;

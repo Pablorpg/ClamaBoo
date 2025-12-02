@@ -7,7 +7,7 @@ const PORT = 5000;
 const startServer = async () => {
   try {
     await sequelize.sync({ force: true });
-    console.log("Banco de dados 'clamaboo' recriado com sucesso!");
+    console.log("Banco de dados 'clamaboo' recriado");
 
     app.listen(PORT, () => {
       console.log(`Servidor rodando em http://localhost:${PORT}`);

@@ -2,9 +2,6 @@ import Follow from "../models/Follow.js";
 import Company from "../models/Company.js";
 import User from "../models/User.js";
 
-/**
- * Seguir empresa
- */
 export const followCompany = async (req, res) => {
   try {
     const userId = req.userId;
@@ -30,9 +27,6 @@ export const followCompany = async (req, res) => {
   }
 };
 
-/**
- * Deixar de seguir empresa
- */
 export const unfollowCompany = async (req, res) => {
   try {
     const userId = req.userId;
@@ -54,9 +48,6 @@ export const unfollowCompany = async (req, res) => {
   }
 };
 
-/**
- * Verifica se o usuário segue a empresa
- */
 export const checkFollowing = async (req, res) => {
   try {
     const userId = req.userId;
@@ -74,9 +65,6 @@ export const checkFollowing = async (req, res) => {
   }
 };
 
-/**
- * Contar seguidores de uma empresa
- */
 export const getFollowersCount = async (req, res) => {
   try {
     const companyId = req.params.id;
@@ -95,9 +83,6 @@ export const getFollowersCount = async (req, res) => {
   }
 };
 
-/**
- * Lista empresas que o usuário segue
- */
 export const getFollowing = async (req, res) => {
   try {
     const userId = req.userId;
