@@ -38,7 +38,7 @@
 
 span{
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(222, 222, 222) !important;
   font-size: 16px;
   margin-bottom: 8px;
 }
@@ -156,25 +156,25 @@ span{
   position: fixed;
   top: 40px;
   left: 30px;
-  background: white;
+  background: rgb(222, 222, 222);
   border: 2px solid #7ac89f;
   color: #2f8f5b;
   padding: 12px 22px;
   border-radius: 40px;
-  font-weight: 600;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transition: 0.3s ease;
-  z-index: 20;
 }
 
 .botao-voltar:hover {
   transform: translateY(-2px);
 }
 
-@media (min-width: 1520px){
+
+@media (min-width: 1921px){
   .botao-voltar{
     width: 300px;
     margin-top: 30px;

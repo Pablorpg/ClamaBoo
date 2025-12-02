@@ -99,6 +99,7 @@ textarea {
 .file-name {
   color: #555;
   font-style: italic;
+  width: 250px;
 }
 
 .termos {
@@ -355,7 +356,7 @@ textarea {
   font-size: 1.1rem;
 }
 
-@media (min-width: 1520px){
+@media (min-width: 1921px){
   .empresa-nome{
     width: 150px;
     margin-left: 313px;

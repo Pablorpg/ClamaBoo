@@ -12,7 +12,6 @@
 }
 
 .doar-container h1 {
-  
   color: #5d9b50;
   font-size: 2.6rem;
   font-weight: 600;
@@ -28,7 +27,7 @@
   flex-direction: column;
   gap: 35px;
   width: 100%;
-  max-width: 900px;
+  margin-left: 109px;
 
 }
 
@@ -50,6 +49,7 @@
 }
 
 .emoji-icon {
+  width: 100%;
   font-size: 4.8rem;
   display: block;
   margin-bottom: 20px;
@@ -78,7 +78,7 @@
   border: 2px solid #5d9b5063;
 }
 
-@media (min-width: 1520px) {
+@media (min-width: 1921px) {
   .doar-container{
     margin-top: 100px;
   }

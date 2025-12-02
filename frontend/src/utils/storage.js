@@ -1,4 +1,3 @@
-// src/utils/storage.js
 export const safeSetItem = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
@@ -17,25 +16,11 @@ export const safeGetItem = (key, defaultValue = []) => {
   }
 };
 
-// Evento global para notificações internas
 const STORAGE_EVENT = "clamaboo-storage-changed";
 export const notificarMudanca = () => window.dispatchEvent(new Event(STORAGE_EVENT));
 export const STORAGE_UPDATED_EVENT = STORAGE_EVENT;
 
-/**
- * Retorna o ID da empresa "correta" dependendo do contexto.
- * - Se o usuário estiver logado como empresa (companyToken) retorna companyData.id
- * - Se context === 'doacao' tenta empresaAtivaParaDoacao
- * - Se context === 'denuncia' tenta empresaAtivaParaDenuncia
- * - Senão, tenta empresaAtivaId (compatibilidade)
- *
- * Uso:
- *  getEmpresaIdCorreto() -> para páginas da empresa (usa companyData se existir)
- *  getEmpresaIdCorreto('doacao') -> tenta seleção doação
- *  getEmpresaIdCorreto('denuncia') -> tenta seleção denúncia
- */
 export function getEmpresaIdCorreto(context = "") {
-  // Se empresa (painel da ONG) está logada, prefere companyData
   if (localStorage.getItem("companyToken")) {
     const cd = safeGetItem("companyData", {});
     if (cd?.id) return String(cd.id);
@@ -61,19 +46,13 @@ export function getEmpresaIdCorreto(context = "") {
     } catch (e) { /* ignore */ }
   }
 
-  // Compatibilidade com chave antiga / global
   const empresaAtivaId = localStorage.getItem("empresaAtivaId");
   if (empresaAtivaId) return String(empresaAtivaId);
 
   return null;
 }
 
-/**
- * salvarDoacao: aceita novaDoacao. Se novaDoacao.empresaId estiver presente usa ele,
- * senão tenta pegar a seleção de doação (empresaAtivaParaDoacao) ou companyData (se ONG logada).
- */
 export const salvarDoacao = (novaDoacao) => {
-  // prefer empresaId embutido no objeto (ex: DoarParaEmpresa já passou)
   const empresaIdFromObj = novaDoacao && novaDoacao.empresaId ? String(novaDoacao.empresaId) : null;
   const empresaId = empresaIdFromObj || getEmpresaIdCorreto("doacao");
 

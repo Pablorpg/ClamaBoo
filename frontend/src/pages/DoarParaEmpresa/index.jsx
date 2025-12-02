@@ -1,4 +1,3 @@
-// src/pages/DoarParaEmpresa.jsx
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavbarUser from "../../components/NavbarUser";
@@ -9,15 +8,11 @@ import "./style.css";
 export default function DoarParaEmpresa() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  // Empresa pode vir por state (quando usuário clicou em "Doar" em uma lista)
   const empresaFromState = location.state?.empresa;
 
-  // Empresa previamente selecionada para DOAÇÃO (modo B): empresaAtivaParaDoacao
   const empresaFromStorageRaw = localStorage.getItem("empresaAtivaParaDoacao");
   const empresaFromStorage = empresaFromStorageRaw ? JSON.parse(empresaFromStorageRaw) : null;
 
-  // prefer state (ação imediata), senão usa a seleção de doação salva
   const empresa = empresaFromState?.id ? empresaFromState : empresaFromStorage;
 
   const userData = JSON.parse(localStorage.getItem("userData") || "{}");
@@ -26,7 +21,6 @@ export default function DoarParaEmpresa() {
   const [valor, setValor] = useState("");
   const [nome, setNome] = useState("");
 
-  // Se veio por state, salve como seleção de DOAÇÃO (não toca seleção de denúncia)
   useEffect(() => {
     if (empresaFromState?.id) {
       localStorage.setItem("empresaAtivaParaDoacao", JSON.stringify(empresaFromState));
@@ -57,7 +51,6 @@ export default function DoarParaEmpresa() {
       data: new Date().toISOString(),
       nome: nome.trim() || "Anônimo",
       anonimo: !nome.trim(),
-      // já passamos explicitamente a empresa da doação (garante isolamento)
       empresaId: String(empresa.id),
       empresaNome: empresa.companyName,
       userEmail,
@@ -114,10 +107,6 @@ export default function DoarParaEmpresa() {
             No mundo real você faria o PIX pelo seu banco.<br />
             Aqui estamos simulando para o projeto ficar completo!
           </p>
-
-          <button onClick={() => navigate(-1)} className="btn-voltar-simples">
-            ← Voltar
-          </button>
         </div>
       </div>
     </>

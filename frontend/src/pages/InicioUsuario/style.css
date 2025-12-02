@@ -134,6 +134,9 @@ html {
   border-radius: 20px;
   padding: 10px 20px;
   cursor: pointer;
+
+  width: 150px;
+  height: 50px;
 }
 
 .btn-search:hover {
@@ -171,12 +174,13 @@ html {
 }
 
 .recado-text {
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 .recado-text h3 {
   margin-bottom: 10px;
   font-size: 22px;
+  color: #000;
 }
 
 .recado-text p {
@@ -436,9 +440,9 @@ html {
 
 .imgdog2 {
   width: 350px !important;
-  position: relative;
-  top: 20px;
-  left: 70px;
+  position: absolute;
+  top: 650px;
+  left: 950px;
   z-index: 1;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -449,7 +453,7 @@ html {
 .element1 {
   width: 450px;
   position: absolute;
-  left: 780px;
+  left: 900px;
   top: 600px;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -490,10 +494,10 @@ html {
 }
 
 .element5 {
-  width: 150px;
+  width: 170px;
   position: absolute;
-  left: 300px;
-  top: 1175px;
+  left: 255px;
+  top: 1170px;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   user-select: none;
@@ -511,7 +515,69 @@ html {
   z-index: 1;
 }
 
-@media (min-width: 1520px) {
+.btn-perfil{
+  margin-left: 102px !important;
+}
+
+.txtEmpresas {
+  color: #000;
+}
+
+.card-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.88);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  width: 280px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s ease;
+  z-index: 10;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.88);
+}
+
+.card-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: 108%;
+}
+
+.contato {
+  width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.card-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 1921px) {
 
   .navbar {
     height: 70px;

@@ -61,7 +61,6 @@ export default function EditarInformacoesConta() {
 
             toast.success("Alterações salvas com sucesso!");
 
-            // 🔥 Atualiza localStorage sem precisar relogar
             const stored = JSON.parse(localStorage.getItem("userData") || "{}");
             stored.name = username;
             stored.email = email;

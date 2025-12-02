@@ -28,7 +28,7 @@ export default function EditarPerfilEmpresa() {
         headers: { Authorization: `Bearer ${companyToken}` },
       });
 
-      if (!res.ok) throw new Error(await Offeredres.text());
+      if (!res.ok) throw new Error(await res.text());
 
       const data = await res.json();
       if (!data.company) throw new Error("Perfil não encontrado");

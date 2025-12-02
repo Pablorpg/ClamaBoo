@@ -7,14 +7,22 @@ export default function DoacoesPetsEmpresa() {
 
   useEffect(() => {
     const empresaId = localStorage.getItem("empresaAtivaId");
+    const token = localStorage.getItem("companyToken");
 
-    const todasPets = JSON.parse(localStorage.getItem("petsDoacao") || "[]");
+    async function carregarPets() {
+      try {
+        const res = await fetch(`http://localhost:5000/api/donate/pets/${empresaId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
-    const filtradas = todasPets.filter(
-      (p) => String(p.empresaId) === String(empresaId)
-    );
+        const data = await res.json();
+        setPets(data);
+      } catch (error) {
+        console.error("Erro ao carregar pets:", error);
+      }
+    }
 
-    setPets(filtradas);
+    carregarPets();
   }, []);
 
   return (
@@ -30,7 +38,7 @@ export default function DoacoesPetsEmpresa() {
           <div className="pets-grid">
             {pets.map((pet) => (
               <div key={pet.id} className="pet-card">
-                <img src={pet.foto} alt={pet.nome} className="pet-foto" />
+                <img src={`http://localhost:5000${pet.foto}`} alt={pet.nome} className="pet-foto" />
 
                 <h3>{pet.nome}</h3>
 
@@ -44,7 +52,7 @@ export default function DoacoesPetsEmpresa() {
                 <p><strong>Local:</strong> {pet.local}</p>
 
                 <small className="data">
-                  Recebido em: {new Date(pet.data).toLocaleDateString("pt-BR")}
+                  Recebido em: {new Date(pet.createdAt).toLocaleDateString("pt-BR")}
                 </small>
               </div>
             ))}

@@ -135,11 +135,9 @@ export default function LoginCadastro() {
       const res = await loginCompany({ email: email.trim(), password: password.trim() });
 
       if (res.token && res.type === "company") {
-        // SALVA TOKEN
         localStorage.setItem("companyToken", res.token);
         localStorage.setItem("companyId", res.company.id);
 
-        // 🚀🚀🚀 SALVA companyData (O QUE ESTAVA FALTANDO)
         localStorage.setItem(
           "companyData",
           JSON.stringify({
@@ -150,7 +148,6 @@ export default function LoginCadastro() {
           })
         );
 
-        // LIMPA USER
         localStorage.removeItem("userToken");
         localStorage.removeItem("userEmail");
         localStorage.removeItem("userName");

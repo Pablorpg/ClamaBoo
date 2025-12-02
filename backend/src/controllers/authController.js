@@ -6,6 +6,36 @@ import dotenv from "dotenv";
 import { Op } from "sequelize";
 dotenv.config();
 
+export const authCompany = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  console.log("HEADER RECEBIDO:", authHeader);
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Token não fornecido" });
+  }
+
+  const token = authHeader.replace("Bearer ", "").trim();
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log("TOKEN DECODED:", decoded);
+
+    if (!decoded || decoded.type !== "company") {
+      return res.status(403).json({ message: "Acesso negado. Não é empresa." });
+    }
+
+    req.companyId = decoded.id;
+
+    next();
+  } catch (err) {
+    console.error("Erro no authCompany:", err);
+    return res.status(401).json({ message: "Token inválido" });
+  }
+};
+
+
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;

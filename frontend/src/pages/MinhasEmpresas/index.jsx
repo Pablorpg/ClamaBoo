@@ -46,10 +46,8 @@ export default function MinhasEmpresas() {
 
     const idStr = String(company.id);
 
-    // ESTE É O *ÚNICO* ID OFICIAL
     localStorage.setItem("empresaAtivaId", idStr);
 
-    // Mantemos somente como “extra” (não mais usado para salvar)
     localStorage.setItem("empresaAtivaParaDenuncia", JSON.stringify(company));
 
     setEmpresaAtivaId(idStr);
@@ -79,7 +77,6 @@ export default function MinhasEmpresas() {
       if (response.ok) {
         setFollowed((prev) => prev.filter((c) => c.id !== companyToUnfollow.id));
 
-        // SE DESSEGUIR A EMPRESA ATIVA → LIMPA TUDO
         if (empresaAtivaId === String(companyToUnfollow.id)) {
           localStorage.removeItem("empresaAtivaId");
           localStorage.removeItem("empresaAtivaParaDenuncia");

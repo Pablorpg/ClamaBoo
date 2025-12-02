@@ -27,12 +27,15 @@
 }
 
 .avatar-placeholder span {
+  width: 80px;
+  height: 120px;
   font-size: 90px;
   margin: 0;
   font-weight: 500;
   color: #fff;
   background-color: #e67e22;
 }
+
 
 .perfil-info {
   background: white;
@@ -144,8 +147,8 @@
   margin-bottom: 0;
 }
 
-@media(min-width: 1520px){
-  .perfil-container{
+@media(min-width: 1520px) {
+  .perfil-container {
     margin-top: 200px;
   }
 }

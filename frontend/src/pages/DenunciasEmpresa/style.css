@@ -76,6 +76,10 @@
   font-weight: 600;
 }
 
+span{
+  width: 150px;
+}
+
 .denuncia-meta {
   display: flex;
   align-items: center;

@@ -1,25 +1,26 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-dotenv.config();
 
-export default function authCompany(req, res, next) {
+export const authCompany = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  const token = authHeader?.split(" ")[1];
 
-  if (!token) {
-    return res.status(401).json({ message: "Login necessário" });
+  if (!authHeader) {
+    return res.status(401).json({ message: "Token não fornecido" });
   }
+
+  const token = authHeader.replace("Bearer ", "").trim();
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (decoded.type !== "company") {
-      return res.status(403).json({ message: "Acesso permitido somente para empresas" });
+    if (!decoded || decoded.type !== "company") {
+      return res.status(403).json({ message: "Acesso negado. Não é empresa." });
     }
 
     req.companyId = decoded.id;
+
     next();
-  } catch {
-    return res.status(401).json({ message: "Token inválido ou expirado" });
+  } catch (err) {
+    console.error("Erro no authCompany:", err);
+    return res.status(401).json({ message: "Token inválido" });
   }
-}
+};

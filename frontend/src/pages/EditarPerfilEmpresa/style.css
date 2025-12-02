@@ -58,8 +58,12 @@
   background: #ff9b3c;
 }
 
+span{
+  background: #ff9b3c !important;
+}
+
 .file-label:hover span {
-  background: #ff9b3c;
+  background: #ff9b3c ;
   transform: translateY(-2px);
   border-radius: 5px;
 }

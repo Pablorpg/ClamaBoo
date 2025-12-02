@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    await sequelize.sync({ alter: true });
-    console.log("Banco de dados sincronizado com sucesso");
+    await sequelize.sync({ force: true });
+    console.log("Banco recriado com sucesso");
 
     app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}`);

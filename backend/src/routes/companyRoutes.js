@@ -13,7 +13,7 @@ import {
   uploadCompanyLogo
 } from "../controllers/companyController.js";
 
-import authCompany from "../middleware/authCompany.js";
+import { authCompany } from "../middleware/authCompany.js";
 import Company from "../models/Company.js";
 
 const router = express.Router();

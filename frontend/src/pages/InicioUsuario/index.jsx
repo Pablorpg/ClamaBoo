@@ -89,25 +89,53 @@ export default function InicioUsuario() {
           <h2>Ajude cães, gatos e outros animais em risco com sua doação e denúncia.</h2>
 
           <div className="home-cards">
-            <div className="card orange">
-              <div className="carddog">
-                <img src={dogImg} className="imgdog" alt="Doações" />
+            {/* DOAÇÕES */}
+            <div className="card-wrapper">
+              <div className="card orange">
+                <div className="carddog">
+                  <img src={dogImg} className="imgdog" alt="Doações" />
+                </div>
+                <p className="txtDoacoes">Doações</p>
               </div>
-              <p className="txtDoacoes">Doações</p>
+              <div className="tooltip">
+                <strong>Como doar?</strong><br />
+                • Doe via PIX para ONGs cadastradas<br />
+                • Adote um pet e dê um lar cheio de amor<br />
+                Qualquer valor faz uma grande diferença!
+              </div>
             </div>
 
-            <div className="card blue">
-              <div className="cardcat">
-                <img src={catImg} className="imgcat" alt="Denúncias" />
+            {/* DENÚNCIAS */}
+            <div className="card-wrapper">
+              <div className="card blue">
+                <div className="cardcat">
+                  <img src={catImg} className="imgcat" alt="Denúncias" />
+                </div>
+                <p className="txtDenuncias">Denúncias</p>
               </div>
-              <p className="txtDenuncias">Denúncias</p>
+              <div className="tooltip">
+                <strong>Como denunciar maus-tratos?</strong><br />
+                • Tire fotos ou vídeos do animal em risco<br />
+                • Anote o endereço completo<br />
+                • Ligue 181 ou procure a polícia/IBAMA ou faça sua denúncia atráves do nosso site.<br />
+                Sua denúncia pode salvar uma vida!
+              </div>
             </div>
 
-            <div className="card pink">
-              <div className="cardrabbit">
-                <img src={rabbitImg} className="imgrabbit" alt="Contato" />
+            {/* DÚVIDAS */}
+            <div className="card-wrapper">
+              <div className="card pink">
+                <div className="cardrabbit">
+                  <img src={rabbitImg} className="imgrabbit" alt="Dúvidas" />
+                </div>
+                <p className="txtDuvidas">Dúvidas</p>
               </div>
-              <p className="txtDuvidas">Dúvidas</p>
+              <div className="tooltip">
+                <strong>Tire suas dúvidas!</strong><br />
+                • Fale pelo WhatsApp: (82) 99123-4567<br />
+                • E-mail: clamaboo@gmail.com<br />
+                Estamos aqui pra te ajudar
+              </div>
             </div>
           </div>
         </section>
@@ -142,8 +170,15 @@ export default function InicioUsuario() {
             <p>
               Com a sua doação e denúncia, você pode ajudar animais em risco. Faça a diferença hoje!
             </p>
+
+          </div>
+          <div>
+            <span className="contato">Contato: 82 99123-4567</span>
+            <span className="contato">Email: clamaBoo@gmil.com</span>
           </div>
         </section>
+
+
 
         {showSearchModal && (
           <div className="modal-bg">
@@ -193,12 +228,6 @@ export default function InicioUsuario() {
                           onClick={() => openCompanyProfile(company.id)}
                         >
                           Ver Perfil
-                        </button>
-                        <button
-                          className="btn-doar"
-                          onClick={() => doarParaEmpresa(company)}
-                        >
-                          Doar
                         </button>
                       </div>
                     </div>

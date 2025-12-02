@@ -6,7 +6,6 @@ import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// --- CONFIGURAÇÃO DO MULTER ---
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(process.cwd(), "uploads/pets");
@@ -20,10 +19,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// --- ROTA DE ENVIO DE PET ---
 router.post("/pet", verifyToken, upload.single("foto"), async (req, res) => {
   try {
-    // LOG PARA DEBUG: veja se o arquivo chegou
     console.log("req.file:", req.file);
 
     if (!req.file) {
@@ -60,5 +57,22 @@ router.post("/pet", verifyToken, upload.single("foto"), async (req, res) => {
     res.status(500).json({ message: "Erro no servidor" });
   }
 });
+
+router.get("/pets/:companyId", verifyToken, async (req, res) => {
+  try {
+    const { companyId } = req.params;
+
+    const pets = await PetDonation.findAll({
+      where: { companyId },
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.json(pets);
+  } catch (err) {
+    console.error("Erro ao buscar pets:", err);
+    res.status(500).json({ message: "Erro ao buscar pets" });
+  }
+});
+
 
 export default router;
