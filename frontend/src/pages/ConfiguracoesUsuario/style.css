@@ -46,6 +46,7 @@
   gap: 18px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .botoes-tema button {
@@ -144,12 +145,11 @@
 }
 
 span {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+   margin-left: 100px;
+  margin-top: 20px;
   font-weight: 500;
   background-color: rgba(164, 96, 96, 0.137);
-  padding: 0;
+  padding: 2px;
   border-radius: 10px;
 }
 

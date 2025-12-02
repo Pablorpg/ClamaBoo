@@ -4,6 +4,7 @@ import User from "../models/User.js";
 import { sendResetEmail } from "../utils/mailer.js";
 import dotenv from "dotenv";
 import { Op } from "sequelize";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/jwt.js"; 
 dotenv.config();
 
 export const authCompany = (req, res, next) => {
@@ -18,7 +19,7 @@ export const authCompany = (req, res, next) => {
   const token = authHeader.replace("Bearer ", "").trim();
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
 
     console.log("TOKEN DECODED:", decoded);
 
@@ -27,7 +28,6 @@ export const authCompany = (req, res, next) => {
     }
 
     req.companyId = decoded.id;
-
     next();
   } catch (err) {
     console.error("Erro no authCompany:", err);
@@ -35,7 +35,9 @@ export const authCompany = (req, res, next) => {
   }
 };
 
-
+/* ============================
+   📝 REGISTRO
+============================ */
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -62,6 +64,9 @@ export const register = async (req, res) => {
   }
 };
 
+/* ============================
+   🔑 LOGIN
+============================ */
 export const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
@@ -71,9 +76,11 @@ export const login = async (req, res) => {
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) return res.status(400).json({ message: "A senha está incorreta." });
 
-  const token = jwt.sign({ id: user.id, type: "user" }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
-  });
+  const token = jwt.sign(
+    { id: user.id, type: "user" },
+    JWT_SECRET,
+    { expiresIn: JWT_EXPIRES_IN }
+  );
 
   return res.json({
     message: "Login realizado com sucesso!",
@@ -83,6 +90,9 @@ export const login = async (req, res) => {
   });
 };
 
+/* ============================
+   📧 ESQUECI MINHA SENHA
+============================ */
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -101,6 +111,9 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
+/* ============================
+   🔄 REDEFINIR SENHA
+============================ */
 export const resetPassword = async (req, res) => {
   try {
     const { email, code, newPassword } = req.body;
@@ -119,6 +132,9 @@ export const resetPassword = async (req, res) => {
   }
 };
 
+/* ============================
+   👥 LISTAR USUÁRIOS
+============================ */
 export const getUsers = async (req, res) => {
   try {
     const users = await User.findAll({
@@ -130,6 +146,9 @@ export const getUsers = async (req, res) => {
   }
 };
 
+/* ============================
+   👤 PERFIL DO USUÁRIO
+============================ */
 export const getProfile = async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
@@ -146,6 +165,9 @@ export const getProfile = async (req, res) => {
   }
 };
 
+/* ============================
+   ✏️ ATUALIZAR PERFIL
+============================ */
 export const updateProfileUser = async (req, res) => {
   try {
     const { username, email, senhaAtual, novaSenha } = req.body;
@@ -154,9 +176,7 @@ export const updateProfileUser = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "Usuário não encontrado" });
 
-    if (username) {
-      user.username = username.trim();
-    }
+    if (username) user.username = username.trim();
 
     if (email) {
       const existing = await User.findOne({

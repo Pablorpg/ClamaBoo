@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import { JWT_SECRET } from "../config/jwt.js";
 import User from "../models/User.js";
-
-dotenv.config();
 
 export default async function authUser(req, res, next) {
   try {
@@ -13,7 +11,7 @@ export default async function authUser(req, res, next) {
     }
 
     const token = authHeader.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
 
     if (decoded.type !== "user") {
       return res.status(403).json({ message: "Acesso negado: apenas usuários" });

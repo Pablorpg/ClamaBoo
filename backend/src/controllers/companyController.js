@@ -6,6 +6,7 @@ import { sendResetEmail } from "../utils/mailer.js";
 import dotenv from "dotenv";
 import path from "path";
 import fs from "fs";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/jwt.js"; 
 dotenv.config();
 
 export const registerCompany = async (req, res) => {
@@ -26,8 +27,8 @@ export const registerCompany = async (req, res) => {
 
     const token = jwt.sign(
       { id: company.id, type: "company" },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES_IN }
     );
 
     return res.status(201).json({
@@ -67,8 +68,8 @@ export const loginCompany = async (req, res) => {
 
     const token = jwt.sign(
       { id: company.id, type: "company" },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES_IN }
     );
 
     res.json({
@@ -96,7 +97,7 @@ export const forgotPasswordCompany = async (req, res) => {
       return res.status(404).json({ message: "Empresa não encontrada" });
 
     const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
-    company.resetCode = resetCode;
+    company.resetCode = resetCode.trim();
     await company.save();
 
     await sendResetEmail(company.email, resetCode);
@@ -114,7 +115,7 @@ export const resetPasswordCompany = async (req, res) => {
 
     const company = await Company.findOne({ where: { email } });
 
-    if (!company || company.resetCode !== code.trim())
+    if (!company || company.resetCode?.trim() !== code.trim())
       return res.status(400).json({ message: "Código inválido ou expirado" });
 
     company.password = await bcrypt.hash(newPassword, 10);
@@ -264,6 +265,7 @@ export const getCompanyDashboard = async (req, res) => {
 export const getCompanyProfileMe = async (req, res) => {
   try {
     console.log("Token decodificado:", req.companyId);
+
     const company = await Company.findByPk(req.companyId, {
       attributes: { exclude: ["password", "resetCode"] }
     });

@@ -1,22 +1,21 @@
 import app from "./app.js";
 import sequelize from "./config/database.js";
 import "./jobs/deleteExpiredCompanies.js";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const startServer = async () => {
   try {
     await sequelize.sync({ force: true });
-    console.log("Banco recriado com sucesso");
+    console.log("Banco de dados 'clamaboo' recriado com sucesso!");
 
     app.listen(PORT, () => {
-      console.log(`Servidor rodando na porta ${PORT}`);
+      console.log(`Servidor rodando em http://localhost:${PORT}`);
+      console.log("Acesse o frontend em http://localhost:5173");
     });
   } catch (error) {
-    console.error("Erro ao iniciar servidor:", error);
+    console.error("Erro ao conectar com o banco:", error);
+    process.exit(1);
   }
 };
 
