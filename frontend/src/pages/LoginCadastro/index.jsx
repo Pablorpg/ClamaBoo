@@ -287,6 +287,7 @@ export default function LoginCadastro() {
               >
                 Empresa
               </button>
+
             </div>
 
             <div className="input-box">
@@ -320,11 +321,52 @@ export default function LoginCadastro() {
             <button type="button" className="btn-forgot" onClick={() => setShowResetPanel(true)}>
               Esqueceu a senha?
             </button>
+
+            {isMobile && (
+              <button
+                type="button"
+                className="mobile-register-btn"
+                onClick={() => setIsActive(true)}
+                style={{
+                  marginTop: "25px",
+                  width: "100%",
+                  height: "56px",
+                  background: "transparent",
+                  border: "2.5px solid #FB9E47",
+                  color: "#FB9E47",
+                  fontWeight: "600",
+                  fontSize: "1.1rem",
+                  borderRadius: "16px",
+                  cursor: "pointer"
+                }}
+              >
+                Criar uma conta
+              </button>
+            )}
           </form>
         </div>
 
-        <div className="form-box register">
+        <div className={`form-box register ${isMobile ? 'scrollable-register' : ''}`}>
           <form onSubmit={isCompany ? handleRegisterCompany : handleRegister}>
+
+            {isMobile && (
+              <button
+                type="button"
+                onClick={() => setIsActive(false)}
+                style={{
+                  alignSelf: "flex-start",
+                  background: "none",
+                  border: "none",
+                  color: "#999",
+                  fontSize: "1.1rem",
+                  marginBottom: "20px",
+                  cursor: "pointer",
+                  fontWeight: "500"
+                }}
+              >
+                ← Voltar ao Login
+              </button>
+            )}
             <h1>Cadastre-se</h1>
 
             <div className="toggle-register-type">

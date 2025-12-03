@@ -74,13 +74,13 @@ export default function NavbarUser() {
                   Doação
                 </li>
 
-                <li className={isActive("/denuncia") ? "active" : ""} onClick={() => goTo("/denuncia")}>
+                <li id="fD" className={isActive("/denuncia") ? "active" : ""} onClick={() => goTo("/denuncia")}>
                   Fazer Denúncia
                 </li>
               </>
             )}
 
-            <li className={isActive("/minhas-empresas") ? "active" : ""} onClick={() => goTo("/minhas-empresas")}>
+            <li id="mE" className={isActive("/minhas-empresas") ? "active" : ""} onClick={() => goTo("/minhas-empresas")}>
               Minhas Empresas
             </li>
 

@@ -165,7 +165,6 @@ span{
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transition: 0.3s ease;
 }
 
@@ -207,6 +206,11 @@ span{
 }
 
 @media (max-width: 480px) {
+
+  .btnVoltar{
+    margin-bottom: 40px;
+    margin-right: 10px;
+  }
 
   .container-perfil {
     flex-direction: column;
@@ -289,9 +293,17 @@ span{
   }
 
   .botao-voltar {
+    background-color: none !important;
+    background: none !important;
+    border: none;
     top: 20px;
     left: 15px;
-    padding: 10px 18px;
-    font-size: 0.95rem;
+    width: 350px;
+    height: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 30px;
+    position: relative;
   }
+
 }

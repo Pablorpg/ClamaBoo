@@ -75,9 +75,27 @@ nav ul li.active {
   z-index: 2000;
 }
 
+@media (max-width: 1921px) {
+  nav{
+    margin-left: 650px;
+    margin-top: 10px;
+  }
+
+  #fD{
+    width: 185px;
+  }
+  #mE{
+    width: 205px;
+  }
+}
+
 @media (max-width: 480px) {
   .navbar {
     padding: 20px 15px;
+  }
+
+  .navbar-container{
+    width: 450px !important;
   }
 
   .logo-company img {
@@ -91,6 +109,7 @@ nav ul li.active {
 
   .menu-toggle {
     display: block;
+    margin-left: 200px !important;
   }
 
   nav ul {

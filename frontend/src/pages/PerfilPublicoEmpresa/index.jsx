@@ -90,73 +90,80 @@ export default function PerfilPublicoEmpresa() {
     : LogoPadrao;
 
   return (
-    <div>
+    <>
+
       <button className="botao-voltar" onClick={() => navigate("/Inicio")}>
-        <svg className="seta" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path  d="M19 12H5M12 19l-7-7 7-7" />
+        <svg className="seta" >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
-        <span>Voltar ao início</span>
+        <span className="btnVoltar">Voltar ao início</span>
       </button>
+      <div>
 
-      <div className="container-perfil">
-        <div className="lado-esquerdo">
-          <img
-            className="logo-empresa"
-            src={urlLogo}
-            alt={empresa.companyName}
-            onError={(e) => (e.target.src = LogoPadrao)}
-          />
-          <div className="info-contato"><strong>Email:</strong> {empresa.email}</div>
-          <div className="info-contato"><strong>Telefone:</strong> {empresa.phone || "Não informado"}</div>
-          <div className="info-contato"><strong className="seguidor">Seguidores: </strong> {quantidadeSeguidores}</div>
 
-          {ehUsuario && (
-            <button
-              className={`botao-seguir ${seguindo ? "ja-seguindo" : ""}`}
-              onClick={alternarSeguir}
-              disabled={carregandoSeguidores}
-            >
-              {carregandoSeguidores ? "..." : seguindo ? "Seguindo" : "Seguir"}
-            </button>
-          )}
-        </div>
 
-        <div className="lado-direito">
-          <h2 className="nome-empresa">{empresa.companyName}</h2>
-          <section className="secao-info">
-            <h3>Sobre nós</h3>
-            <p>{empresa.about || "Não informado"}</p>
-          </section>
-          <section className="secao-info">
-            <h3>Objetivos</h3>
-            <p>{empresa.objectives || "Não informado"}</p>
-          </section>
-          <section className="secao-info">
-            <h3>Categorias</h3>
-            <div className="categorias">
-              {empresa.categories?.length > 0 ? (
-                empresa.categories.map((cat, i) => (
-                  <span key={i} className="etiqueta-categoria">{cat}</span>
-                ))
-              ) : (
-                <span>Nenhuma categoria</span>
-              )}
-            </div>
-          </section>
-          <section className="secao-info">
-            <h3>Certificados</h3>
-            {empresa.certificates?.length > 0 ? (
-              <ul className="lista-certificados">
-                {empresa.certificates.map((cert, i) => (
-                  <li key={i}>{cert}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>Nenhum certificado cadastrado</p>
+
+        <div className="container-perfil">
+          <div className="lado-esquerdo">
+            <img
+              className="logo-empresa"
+              src={urlLogo}
+              alt={empresa.companyName}
+              onError={(e) => (e.target.src = LogoPadrao)}
+            />
+            <div className="info-contato"><strong>Email:</strong> {empresa.email}</div>
+            <div className="info-contato"><strong>Telefone:</strong> {empresa.phone || "Não informado"}</div>
+            <div className="info-contato"><strong className="seguidor">Seguidores: </strong> {quantidadeSeguidores}</div>
+
+            {ehUsuario && (
+              <button
+                className={`botao-seguir ${seguindo ? "ja-seguindo" : ""}`}
+                onClick={alternarSeguir}
+                disabled={carregandoSeguidores}
+              >
+                {carregandoSeguidores ? "..." : seguindo ? "Seguindo" : "Seguir"}
+              </button>
             )}
-          </section>
+          </div>
+
+          <div className="lado-direito">
+            <h2 className="nome-empresa">{empresa.companyName}</h2>
+            <section className="secao-info">
+              <h3>Sobre nós</h3>
+              <p>{empresa.about || "Não informado"}</p>
+            </section>
+            <section className="secao-info">
+              <h3>Objetivos</h3>
+              <p>{empresa.objectives || "Não informado"}</p>
+            </section>
+            <section className="secao-info">
+              <h3>Categorias</h3>
+              <div className="categorias">
+                {empresa.categories?.length > 0 ? (
+                  empresa.categories.map((cat, i) => (
+                    <span key={i} className="etiqueta-categoria">{cat}</span>
+                  ))
+                ) : (
+                  <span>Nenhuma categoria</span>
+                )}
+              </div>
+            </section>
+            <section className="secao-info">
+              <h3>Certificados</h3>
+              {empresa.certificates?.length > 0 ? (
+                <ul className="lista-certificados">
+                  {empresa.certificates.map((cert, i) => (
+                    <li key={i}>{cert}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Nenhum certificado cadastrado</p>
+              )}
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </>
+
   );
 }

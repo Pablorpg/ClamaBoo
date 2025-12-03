@@ -17,7 +17,6 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 45px 40px 30px;
   background-color: #FFF6E1;
   position: fixed;
   z-index: 2;
@@ -515,7 +514,7 @@ html {
   z-index: 1;
 }
 
-.btn-perfil{
+.btn-perfil {
   margin-left: 102px !important;
 }
 
@@ -591,6 +590,10 @@ html {
     z-index: 1;
   }
 
+  .home-hero {
+    background: none;
+  }
+
   .card {
     height: 380px;
     width: 300px;
@@ -635,5 +638,54 @@ html {
 
   .txtEmpresa {
     font-size: 1.4rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-cards {
+    display: none;
+  }
+
+  element1 {
+    display: none;
+  }
+
+  .element2 {
+    display: none;
+  }
+
+  .element3 {
+    display: none;
+  }
+
+  .element4 {
+    display: none;
+  }
+
+  .element5 {
+    display: none;
+  }
+
+  .imgdog2{
+    display: none;
+  }
+  
+  .imgrecado{
+    display: none;
+  }
+
+  .home-recado h3{
+    margin-right: 90px;
+    font-size: 1.5rem;
+    margin-left: 15px;
+  }
+
+  .home-recado p{
+    margin-right: 90px;
+    font-size: 15px;
+  }
+
+  .home-faq{
+    height: 350px;
   }
 }
