@@ -72,6 +72,10 @@
   color: #5D4037;
 }
 
+.navCompany{
+  margin-left: 400px !important;
+}
+
 @media (max-width: 480px) {
   .logo-company{
     margin: 0;

@@ -50,14 +50,14 @@ export default function NavbarUser() {
     <header className="navbar">
       <div className="navbar-container">
         <div className="logo-company" onClick={() => goTo("/Inicio")}>
-          <img src={LogoClamaBoo} alt="ClamaBoo" />
+          <img className="logo" src={LogoClamaBoo} alt="ClamaBoo" />
         </div>
 
         <div className="menu-toggle" onClick={toggleMenu}>
           ☰
         </div>
 
-        <nav>
+        <nav className="navUser">
           <ul className={menuOpen ? "show" : ""}>
             <li className={isActive("/Inicio") ? "active" : ""} onClick={() => goTo("/Inicio")}>
               Início

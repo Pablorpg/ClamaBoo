@@ -44,7 +44,7 @@ export default function NavbarCompany() {
           ☰
         </div>
 
-        <nav>
+        <nav className="navCompany">
           <ul className={menuOpen ? "show" : ""}>
             <li
               className={isActive("/empresa/dashboard") ? "active" : ""}

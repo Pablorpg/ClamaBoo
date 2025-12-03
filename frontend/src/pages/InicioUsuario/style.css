@@ -208,6 +208,7 @@ html {
   max-width: 420px;
   text-align: center;
   animation: fadeIn 0.3s ease;
+  z-index: 999;
 }
 
 .category-list {
@@ -520,6 +521,8 @@ html {
 
 .txtEmpresas {
   color: #000;
+  width: 300px;
+  font-size: 3rem !important;
 }
 
 .card-wrapper {
@@ -576,6 +579,14 @@ html {
   visibility: visible;
 }
 
+.txtEmpresa {
+  width: 500px;
+}
+
+.txtCategoria {
+  color: #333;
+}
+
 @media (min-width: 1921px) {
 
   .navbar-home {
@@ -602,8 +613,8 @@ html {
 
   .imgdog2 {
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 30px;
+    left: 190px;
   }
 
   .element1 {
@@ -628,7 +639,7 @@ html {
   }
 
   .element5 {
-    left: 630px;
+    left: 450px;
     top: 1260px;
   }
 
@@ -666,26 +677,26 @@ html {
     display: none;
   }
 
-  .imgdog2{
-    display: none;
-  }
-  
-  .imgrecado{
+  .imgdog2 {
     display: none;
   }
 
-  .home-recado h3{
+  .imgrecado {
+    display: none;
+  }
+
+  .home-recado h3 {
     margin-right: 90px;
     font-size: 1.5rem;
     margin-left: 15px;
   }
 
-  .home-recado p{
+  .home-recado p {
     margin-right: 90px;
     font-size: 15px;
   }
 
-  .home-faq{
+  .home-faq {
     height: 350px;
   }
 }

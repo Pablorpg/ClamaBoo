@@ -183,7 +183,8 @@ export default function InicioUsuario() {
         {showSearchModal && (
           <div className="modal-bg">
             <div className="modal-box">
-              <h2>Escolha uma categoria</h2>
+              <h2 className="
+              txtCategoria">Escolha uma categoria</h2>
 
               <div className="category-list">
                 {categories.map((cat, index) => (
