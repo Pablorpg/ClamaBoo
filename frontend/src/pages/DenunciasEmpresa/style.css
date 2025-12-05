@@ -45,7 +45,7 @@
 }
 
 .denuncia-card {
-  background: white;
+  background: white !important;
   border-radius: 18px;
   padding: 25px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -105,15 +105,15 @@ span {
 }
 
 .status-nova .status-badge {
-  background: #e74c3c !important;
+  background: #e74c3c;
 }
 
 .status-em-analise .status-badge {
-  background: #f39c12 !important;
+  background: #f39c12;
 }
 
 .status-resolvido .status-badge {
-  background: #27ae60 !important;
+  background: #27ae60;
 }
 
 .denuncia-content {
