@@ -13,7 +13,6 @@ import followRoutes from "./routes/followRoutes.js";
 import donateRoutes from "./routes/donateRoutes.js";
 
 const app = express();
-
 app.use(
   cors({
     origin: "http://localhost:5173",
