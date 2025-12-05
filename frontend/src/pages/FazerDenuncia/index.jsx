@@ -40,6 +40,7 @@ export default function FazerDenuncia() {
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
+
     if (type === "checkbox") {
       setFormData({ ...formData, [name]: checked });
     } else if (type === "file") {
@@ -77,6 +78,8 @@ export default function FazerDenuncia() {
       return toast.error("Você deve aceitar os termos para enviar a denúncia.");
     }
 
+    const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+
     const novaDenuncia = {
       id: Date.now(),
       data: new Date().toLocaleDateString("pt-BR"),
@@ -88,6 +91,8 @@ export default function FazerDenuncia() {
       detalhes: {
         nome: formData.nome || "Anônimo",
         telefone: formData.telefone || "Não informado",
+        email: userData.email || "desconhecido",
+
         endereco: formData.endereco,
         bairro: formData.bairro,
         cidade: formData.cidade,
@@ -97,6 +102,7 @@ export default function FazerDenuncia() {
     };
 
     salvarDenuncia(novaDenuncia);
+
     toast.success(`Denúncia enviada para ${empresaSelecionada.companyName}!`);
 
     setFormData({
@@ -109,20 +115,22 @@ export default function FazerDenuncia() {
       estado: "",
       pontoReferencia: "",
       arquivo: null,
-      termos: false
+      termos: false,
     });
+
     setArquivoNome("Nenhum arquivo escolhido");
   };
 
   return (
     <>
       <NavbarUser />
+
       <div className="complaint-container">
         <div className="complaint-card">
           <h1>Formulário de Denúncia de Maus-Tratos a Animais</h1>
           <p className="subtitle">
-            Preencha os campos abaixo com o máximo de detalhes possível.<br />
-            As informações serão tratadas como confidencial.
+            Preencha os campos com o máximo de detalhes possível.<br />
+            As informações serão tratadas como confidenciais.
           </p>
 
           {empresaSelecionada ? (
@@ -193,6 +201,7 @@ export default function FazerDenuncia() {
                 <option value="TO">Tocantins</option>
               </select>
             </div>
+
             <input
               type="text"
               name="pontoReferencia"
@@ -211,7 +220,6 @@ export default function FazerDenuncia() {
               <span className="file-name">{arquivoNome}</span>
             </div>
           </div>
-
 
           <div className="section termos">
             <label className="checkbox-container">

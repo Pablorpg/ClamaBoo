@@ -80,15 +80,15 @@
 }
 
 .status-nova {
-  background: #e74c3c;
+  background: #e74c3c !important;
 }
 
 .status-analise {
-  background: #f39c12;
+  background: #f39c12 !important;
 }
 
 .status-resolvida {
-  background: #27ae60;
+  background: #27ae60 !important;
 }
 
 .acoes-denuncia {
