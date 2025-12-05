@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
 import NavbarCompany from "../../components/NavbarCompany";
 import { safeGetItem, getEmpresaIdCorreto, STORAGE_UPDATED_EVENT } from "../../utils/storage";
+import { toast } from "react-toastify";
 import "./style.css";
 
 export default function DoacoesEmpresa() {
   const [doacoes, setDoacoes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [chavePix, setChavePix] = useState("");
+  const [qrCodeFile, setQrCodeFile] = useState(null);
+  const [qrCodePreview, setQrCodePreview] = useState("");
+
+  const empresaId = getEmpresaIdCorreto();
+
+  useEffect(() => {
+    const config = safeGetItem("empresaPixConfig", {});
+    if (config[empresaId]) {
+      setChavePix(config[empresaId].chave || "");
+      setQrCodePreview(config[empresaId].qrcode || "");
+    }
+  }, [empresaId]);
 
   const carregar = () => {
-    const empresaId = getEmpresaIdCorreto();
     if (!empresaId) {
       setDoacoes([]);
       setLoading(false);
@@ -32,9 +46,58 @@ export default function DoacoesEmpresa() {
       window.removeEventListener(STORAGE_UPDATED_EVENT, carregar);
       clearInterval(interval);
     };
-  }, []);
+  }, [empresaId]);
 
   const total = doacoes.reduce((acc, d) => acc + (Number(d.valor) || 0), 0).toFixed(2);
+
+  const salvarConfigPix = () => {
+    if (!chavePix.trim()) {
+      toast.error("Preencha a chave PIX!");
+      return;
+    }
+
+    if (qrCodeFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const qrcodeBase64 = reader.result;
+
+        const configAtual = safeGetItem("empresaPixConfig", {});
+        configAtual[empresaId] = {
+          chave: chavePix.trim(),
+          qrcode: qrcodeBase64
+        };
+        localStorage.setItem("empresaPixConfig", JSON.stringify(configAtual));
+
+        const companyData = JSON.parse(localStorage.getItem("companyData") || "{}");
+        companyData.pixKey = chavePix.trim();
+        companyData.qrcode = qrcodeBase64;
+        localStorage.setItem("companyData", JSON.stringify(companyData));
+
+        toast.success("Configuração PIX salva com sucesso!", {
+          position: "top-center",
+          autoClose: 4000,
+          icon: "Pix",
+        });
+        setModalAberto(false);
+      };
+      reader.readAsDataURL(qrCodeFile);
+    } else {
+      const configAtual = safeGetItem("empresaPixConfig", {});
+      configAtual[empresaId] = {
+        chave: chavePix.trim(),
+        qrcode: qrCodePreview
+      };
+      localStorage.setItem("empresaPixConfig", JSON.stringify(configAtual));
+
+      const companyData = JSON.parse(localStorage.getItem("companyData") || "{}");
+      companyData.pixKey = chavePix.trim();
+      companyData.qrcode = qrCodePreview;
+      localStorage.setItem("companyData", JSON.stringify(companyData));
+
+      toast.success("Configuração PIX salva com sucesso!");
+      setModalAberto(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -50,9 +113,15 @@ export default function DoacoesEmpresa() {
   return (
     <>
       <NavbarCompany />
+
       <div className="doacoes-wrapper">
         <div className="doacoes-container">
-          <h1 className="page-title">Doações Recebidas</h1>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+            <h1 className="page-title">Doações Recebidas</h1>
+            <button onClick={() => setModalAberto(true)} className="btn-config-pix">
+              Configurar PIX
+            </button>
+          </div>
 
           <div className="total-card">
             <h2>Total Recebido</h2>
@@ -89,6 +158,54 @@ export default function DoacoesEmpresa() {
           </div>
         </div>
       </div>
+
+      {modalAberto && (
+        <div className="modal-overlay" onClick={() => setModalAberto(false)}>
+          <div className="modal-pix" onClick={e => e.stopPropagation()}>
+            <h2>Configurar Chave PIX e QR Code</h2>
+            <p>Preencha para aparecer no card de doação do usuário</p>
+
+            <input
+              type="text"
+              placeholder="Chave PIX (e-mail, CPF, telefone...)"
+              value={chavePix}
+              onChange={e => setChavePix(e.target.value)}
+              className="input-pix"
+            />
+
+            <div className="qrcode-upload">
+              {qrCodePreview ? (
+                <img src={qrCodePreview} alt="QR Code atual" style={{ width: "200px", borderRadius: "12px", margin: "15px 0" }} />
+              ) : (
+                <div className="qrcode-vazio-modal">Nenhum QR Code cadastrado</div>
+              )}
+              <label className="btn-upload">
+                Escolher novo QR Code
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={e => {
+                    if (e.target.files[0]) {
+                      setQrCodeFile(e.target.files[0]);
+                      setQrCodePreview(URL.createObjectURL(e.target.files[0]));
+                    }
+                  }}
+                  style={{ display: "none" }}
+                />
+              </label>
+            </div>
+
+            <div style={{ display: "flex", gap: "15px", marginTop: "20px", justifyContent: "center" }}>
+              <button onClick={salvarConfigPix} className="btn-salvar-pix">
+                Salvar Configuração
+              </button>
+              <button onClick={() => setModalAberto(false)} className="btn-cancelar-pix">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

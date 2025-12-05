@@ -154,6 +154,8 @@ span{
 .botao-voltar {
   cursor: pointer;
   position: fixed;
+  width: 250px;
+  height: 50px;
   top: 40px;
   left: 30px;
   background: rgb(222, 222, 222);
@@ -166,12 +168,16 @@ span{
   align-items: center;
   gap: 10px;
   transition: 0.3s ease;
+  border: none;
+}
+
+.btnVoltar{
+  background: none !important;
 }
 
 .botao-voltar:hover {
   transform: translateY(-2px);
 }
-
 
 @media (min-width: 1921px){
   .botao-voltar{
@@ -210,6 +216,10 @@ span{
   .btnVoltar{
     margin-bottom: 40px;
     margin-right: 10px;
+    background-color: #dedede !important;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
   }
 
   .container-perfil {

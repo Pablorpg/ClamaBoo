@@ -27,58 +27,58 @@
   font-weight: 700;
 }
 
-.empresa-foto {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 25px auto;
+.qrcode-imagem {
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 20px;
+  margin: 35px auto;
   display: block;
-  border: 5px solid #e0e0e0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border: 6px solid #27ae60;
+  box-shadow: 0 12px 35px rgba(39, 174, 96, 0.25);
+  padding: 10px;
+  background: white;
 }
 
 .qrcode-placeholder {
   background: #f0f0f0;
-  height: 220px;
-  margin: 35px 0;
-  border-radius: 18px;
+  width: 260px;
+  height: 260px;
+  margin: 35px auto;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  color: #666;
+  color: #777;
   font-weight: 500;
-  border: 3px dashed #ccc;
+  border: 4px dashed #ccc;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qrcode-placeholder::after {
+  content: "QR Code não cadastrado";
+  font-size: 1.1rem;
+  color: #999;
 }
 
 .pix-key {
-  font-size: 1.25rem;
-  margin: 25px 0;
-  padding: 15px;
+  font-size: 1.3rem;
+  margin: 30px 0;
+  padding: 18px;
   background: #f8fff9;
-  border-radius: 12px;
-  border-left: 5px solid #27ae60;
-}
-
-.simulador-section {
-  margin-top: 40px;
-  padding-top: 35px;
-  border-top: 3px dashed #ddd;
-}
-
-.simulador-title {
-  color: #27ae60;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+  border-radius: 16px;
+  border-left: 6px solid #27ae60;
+  font-weight: 600;
+  color: #2c3e50;
+  word-break: break-all;
 }
 
 .doar-form {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .input-valor,
@@ -94,7 +94,7 @@
 .input-valor:focus,
 .input-nome:focus {
   border-color: #27ae60;
-  box-shadow: 0 0 0 4-Makingpx rgba(39, 174, 96, 0.2);
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.2);
 }
 
 .btn-doar {
@@ -107,13 +107,13 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .btn-doar:hover {
   background: #219653;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(39, 174, 96, 0.4);
 }
 
 .info-real {
@@ -124,10 +124,7 @@
   padding: 20px;
   background: #f8f9fa;
   border-radius: 12px;
-}
-
-.voltar-container {
-  margin-top: 40px;
+  border: 1px solid #eee;
 }
 
 .btn-voltar-simples {
@@ -137,6 +134,7 @@
   font-size: 1.25rem;
   cursor: pointer;
   font-weight: 600;
+  margin-top: 20px;
   transition: color 0.2s;
 }
 
@@ -169,12 +167,10 @@
 }
 
 @media (max-width: 480px) {
-
   .doar-wrapper {
     padding-top: 20px;
     padding-bottom: 40px;
     margin-top: 60px;
-    border-radius: 10px;
   }
 
   .doar-card {
@@ -183,78 +179,43 @@
   }
 
   .doar-title {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+    font-size: 1.9rem;
   }
 
-  .empresa-foto {
-    width: 100px;
-    height: 100px;
-    margin: 20px auto;
+  .qrcode-imagem,
+  .qrcode-placeholder {
+    width: 200px;
+    height: 200px;
+    margin: 25px auto;
   }
 
   .qrcode-placeholder {
-    height: 180px;
     font-size: 1rem;
-    margin: 25px 0;
   }
 
   .pix-key {
-    font-size: 1rem;
-    padding: 12px;
+    font-size: 1.1rem;
+    padding: 14px;
     margin: 20px 0;
   }
 
-  .simulador-section {
-    margin-top: 30px;
-    padding-top: 25px;
-  }
-
-  .simulador-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-  }
-
   .doar-form {
-    gap: 12px;
+    gap: 14px;
   }
 
   .input-valor,
   .input-nome {
-    padding: 12px 14px;
+    padding: 14px;
     font-size: 1rem;
   }
 
   .btn-doar {
-    font-size: 1.2rem;
-    padding: 14px;
-    border-radius: 40px;
+    font-size: 1.25rem;
+    padding: 16px;
   }
 
   .info-real {
     font-size: 0.95rem;
-    padding: 15px;
+    padding: 16px;
   }
-
-  .voltar-container {
-    margin-top: 25px;
-  }
-
-  .btn-voltar-simples {
-    font-size: 1rem;
-  }
-
-  .error-container {
-    padding-top: 120px;
-  }
-
-  .error-container h1 {
-    font-size: 2rem;
-  }
-
-  .btn-voltar {
-    font-size: 1rem;
-    padding: 12px 25px;
-  }
-
 }

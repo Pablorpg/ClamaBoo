@@ -5,7 +5,10 @@ import CompanyLogoPlaceholder from "../../assets/ClamaBooLogo.png";
 import "./style.css";
 
 export default function EditarPerfilEmpresa() {
-  const base = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/+$/, "").replace(/\/api\/?$/, "");
+  const base = (import.meta.env.VITE_API_URL || "http://localhost:5000")
+    .replace(/\/+$/, "")
+    .replace(/\/api\/?$/, "");
+
   const API = base + "/api/company";
 
   const [company, setCompany] = useState(null);
@@ -38,10 +41,12 @@ export default function EditarPerfilEmpresa() {
         about: data.company.about || "",
         objectives: data.company.objectives || "",
         phone: data.company.phone || "",
-        categories: Array.isArray(data.company.categories) ? data.company.categories : [],
+        categories: Array.isArray(data.company.categories)
+          ? data.company.categories
+          : [],
         certificates: Array.isArray(data.company.certificates)
           ? data.company.certificates
-          : data.company.certificates?.split(",").map(s => s.trim()) || [],
+          : data.company.certificates?.split(",").map((s) => s.trim()) || [],
       };
 
       setCompany(c);
@@ -94,7 +99,7 @@ export default function EditarPerfilEmpresa() {
   const toggleCategory = (cat) => {
     if (!editing) return;
     const list = company.categories.includes(cat)
-      ? company.categories.filter(c => c !== cat)
+      ? company.categories.filter((c) => c !== cat)
       : [...company.categories, cat];
     setCompany({ ...company, categories: list });
   };
@@ -114,7 +119,6 @@ export default function EditarPerfilEmpresa() {
       if (!res.ok) throw new Error(await res.text());
 
       await res.json();
-
       await loadMyCompany();
 
       toast.success("Logo atualizada com sucesso!");
@@ -148,10 +152,15 @@ export default function EditarPerfilEmpresa() {
       if (!res.ok) throw new Error(await res.text());
 
       const data = await res.json();
+
       setCompany({
         ...data.company,
-        categories: Array.isArray(data.company.categories) ? data.company.categories : [],
-        certificates: Array.isArray(data.company.certificates) ? data.company.certificates : [],
+        categories: Array.isArray(data.company.categories)
+          ? data.company.categories
+          : [],
+        certificates: Array.isArray(data.company.certificates)
+          ? data.company.certificates
+          : [],
       });
 
       toast.success("Perfil atualizado com sucesso!");
@@ -166,12 +175,6 @@ export default function EditarPerfilEmpresa() {
   if (loading) return <div className="loading">Carregando perfil...</div>;
   if (!company) return <div className="loading">Perfil não encontrado.</div>;
 
-  const baseURL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/+$/, "");
-
-  const logoUrl = company.profileImage
-    ? `${baseURL}${company.profileImage}?v=${Date.now()}`
-    : CompanyLogoPlaceholder;
-
   const categoryOptions = [
     "Resgate de animais",
     "Adoção e cuidados",
@@ -185,14 +188,15 @@ export default function EditarPerfilEmpresa() {
 
       <div className="editar-perfil-wrapper">
         <div className="editar-perfil-container">
-
           <div className="perfil-esquerdo">
             <div className="logo-box">
               <img
                 key={company.profileImage}
                 src={
-                  company.profileImage
-                    ? `http://localhost:5000${company.profileImage}`
+                  company.profileImage?.startsWith("http")
+                    ? company.profileImage
+                    : company.profileImage
+                    ? `${base}/${company.profileImage.replace(/^\/+/, "")}`
                     : CompanyLogoPlaceholder
                 }
                 alt={company.companyName}
@@ -247,7 +251,6 @@ export default function EditarPerfilEmpresa() {
                 </>
               )}
             </div>
-
           </div>
 
           <div className="perfil-direito">

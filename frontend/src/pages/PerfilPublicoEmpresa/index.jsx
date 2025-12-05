@@ -93,15 +93,9 @@ export default function PerfilPublicoEmpresa() {
     <>
 
       <button className="botao-voltar" onClick={() => navigate("/Inicio")}>
-        <svg className="seta" >
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
-        <span className="btnVoltar">Voltar ao início</span>
+        <p className="btnVoltar">Voltar ao início</p>
       </button>
       <div>
-
-
-
 
         <div className="container-perfil">
           <div className="lado-esquerdo">

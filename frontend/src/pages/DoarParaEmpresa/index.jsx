@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavbarUser from "../../components/NavbarUser";
 import { toast } from "react-toastify";
-import { salvarDoacao } from "../../utils/storage";
+import { salvarDoacao, safeGetItem } from "../../utils/storage";
 import "./style.css";
 
 export default function DoarParaEmpresa() {
   const location = useLocation();
   const navigate = useNavigate();
-  const empresaFromState = location.state?.empresa;
 
+  const empresaFromState = location.state?.empresa;
   const empresaFromStorageRaw = localStorage.getItem("empresaAtivaParaDoacao");
-  const empresaFromStorage = empresaFromStorageRaw ? JSON.parse(empresaFromStorageRaw) : null;
+  const empresaFromStorage = empresaFromStorageRaw
+    ? JSON.parse(empresaFromStorageRaw)
+    : null;
 
   const empresa = empresaFromState?.id ? empresaFromState : empresaFromStorage;
 
@@ -20,12 +22,23 @@ export default function DoarParaEmpresa() {
 
   const [valor, setValor] = useState("");
   const [nome, setNome] = useState("");
+  const [chavePix, setChavePix] = useState("Carregando...");
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
 
   useEffect(() => {
-    if (empresaFromState?.id) {
-      localStorage.setItem("empresaAtivaParaDoacao", JSON.stringify(empresaFromState));
+    if (!empresa?.id) return;
+
+    const config = safeGetItem("empresaPixConfig", {});
+    const dadosSalvos = config[empresa.id];
+
+    if (dadosSalvos?.chave) {
+      setChavePix(dadosSalvos.chave);
+      setQrCodeUrl(dadosSalvos.qrcode || "");
+    } else {
+      setChavePix(empresa.pixKey || "Não informada");
+      setQrCodeUrl(empresa.qrcode || "");
     }
-  }, [empresaFromState]);
+  }, [empresa]);
 
   if (!empresa?.id) {
     return (
@@ -33,7 +46,7 @@ export default function DoarParaEmpresa() {
         <NavbarUser />
         <div className="error-container">
           <h1>Nenhuma empresa selecionada</h1>
-          <button onClick={() => navigate("/minhas-empresas")} className="btn-voltar">
+          <button onClick={() => navigate("/minhas-empresas")}>
             Escolher empresa
           </button>
         </div>
@@ -43,7 +56,10 @@ export default function DoarParaEmpresa() {
 
   const simularDoacao = (e) => {
     e.preventDefault();
-    if (!valor || Number(valor) <= 0) return toast.error("Valor inválido!");
+
+    if (!valor || Number(valor) <= 0) {
+      return toast.error("Valor inválido!");
+    }
 
     const novaDoacao = {
       id: Date.now(),
@@ -59,6 +75,7 @@ export default function DoarParaEmpresa() {
 
     salvarDoacao(novaDoacao);
     toast.success(`Doação de R$ ${valor} registrada com sucesso!`);
+
     setValor("");
     setNome("");
   };
@@ -66,21 +83,19 @@ export default function DoarParaEmpresa() {
   return (
     <>
       <NavbarUser />
+
       <div className="doar-wrapper">
         <div className="doar-card">
           <h1 className="doar-title">Doar para {empresa.companyName}</h1>
 
-          <img
-            src={empresa.profileImage ? `http://localhost:5000${empresa.profileImage}` : "/logo192.png"}
-            alt={empresa.companyName}
-            className="empresa-foto"
-            onError={(e) => (e.target.src = "/logo192.png")}
-          />
-
-          <div className="qrcode-placeholder">QR Code PIX</div>
+          {qrCodeUrl ? (
+            <img src={qrCodeUrl} alt="QR Code PIX" className="qrcode-imagem" />
+          ) : (
+            <div className="qrcode-placeholder">QR Code não cadastrado</div>
+          )}
 
           <p className="pix-key">
-            <strong>Chave PIX:</strong> {empresa.pixKey || "Não informada"}
+            <strong>Chave PIX:</strong> {chavePix}
           </p>
 
           <form onSubmit={simularDoacao} className="doar-form">
@@ -92,19 +107,22 @@ export default function DoarParaEmpresa() {
               onChange={(e) => setValor(e.target.value)}
               required
             />
+
             <input
               type="text"
-              placeholder="Seu nome (opcional - deixe em branco para anônimo)"
+              placeholder="Seu nome (opcional)"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
+
             <button type="submit" className="btn-doar">
               Doar Agora
             </button>
           </form>
 
           <p className="info-real">
-            No mundo real você faria o PIX pelo seu banco.<br />
+            No mundo real você faria o PIX pelo seu banco.
+            <br />
             Aqui estamos simulando para o projeto ficar completo!
           </p>
         </div>
